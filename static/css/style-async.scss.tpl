@@ -624,7 +624,7 @@ button{
   }
   &-img-full{
     width: calc(100% + 40px);
-    margin: -20px 0 0 -20px;
+    {# margin: -20px 0 0 -20px; #}
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1048,8 +1048,6 @@ button{
     .list-subitems {
       padding: 0;
       margin: 0 0 35px 0;
-      display: flex;
-      flex-direction: column;
       .nav-item {
         .nav-list-link {
           font-weight: 400;
@@ -1272,7 +1270,8 @@ footer {
 .section-featured-home,
 .section-brands-home,
 .section-newsletter-home,
-.section-instafeed-home {
+.section-instafeed-home,
+.section-banner_full-home {
   @extend %section-margin;
 }
 
@@ -1381,7 +1380,6 @@ footer {
       right: 15px;
       width: 30px;
       height: 30px;
-      text-indent: -99999px;
       &.btn {
         z-index: 9;
       }

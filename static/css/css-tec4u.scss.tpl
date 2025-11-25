@@ -1,4 +1,22 @@
-
+body {
+    main,
+    footer,
+    header,
+    div,
+    button,
+    a,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    * {
+        border-radius: 0 !important;
+    }
+}
 header {
     .section-topbar {
         background-color: #000;
@@ -8,7 +26,7 @@ header {
         z-index: 2;
     }
     .header-content {
-        background-color: #fff;
+        {# background-color: #fff; #}
 
         *,
         .nav-desktop-list > .nav-item > .nav-list-link {
@@ -37,11 +55,9 @@ header {
         }
 
         .nav-item-desktop {
-            {# max-width: 130px; #}
+            max-width: 130px;
             width: 100%;
             text-align: center;
-            flex-direction: column;
-            display: flex;
         }
         #logo {
             filter: revert;
@@ -54,13 +70,8 @@ header {
                 display: flex;
                 margin: auto;
                 justify-content: center;
-                {# margin-left: 30px;
-                margin-right: 30px; #}
-            }
-
-            @media (max-width: 767px) {
-                margin-left: 0px;
-                margin-right: 60px;
+                margin-left: 30px;
+                margin-right: 30px;
             }
         }
         ul.js-nav-desktop-list.nav-desktop-list {
@@ -72,8 +83,8 @@ header {
         .desktop-dropdown {
             width: 100%;
             background-color: #fff;
-            {# display: flex;
-            justify-content: space-between; #}
+            display: flex;
+            justify-content: space-between;
 
             .nav-dropdown-image {
                 width: 40%;
@@ -117,7 +128,7 @@ header {
             ul {
                 background-color: #fff;
                 display: flex;
-                {# flex-direction: column; #}
+                flex-direction: column;
                 align-items: flex-start;
                 justify-content: center;
 
@@ -211,7 +222,6 @@ header {
             border: 1px solid #000;
             background-color: #000;
             color: #fff;
-            border-radius: 50%;
         }
     }
 
@@ -232,7 +242,6 @@ header {
             align-items: center;
             justify-content: center;
             padding: 0;
-            border: none;
 
             span {
                 padding: 2px;
@@ -243,7 +252,6 @@ header {
                 border: 1px solid #0000001f;
                 align-items: center;
                 justify-content: center;
-                border: none;
             }
         }
     }
@@ -319,6 +327,7 @@ header {
 
     h2 {
         color: var(--Black, #000);
+        font-family: "DM Sans";
         font-size: 20px;
         font-style: normal;
         font-weight: 500;
@@ -430,11 +439,11 @@ header {
             .slider-slide {
                 height: 0;
                 position: relative;
-                {# padding-bottom: 60.64%; #}
+                padding-bottom: 60.64%;
                 width: 100%;
 
                 img {
-                    {# position: absolute; #}
+                    position: absolute;
                     top: 0;
                     left: 0;
                     width: 100%;
@@ -665,7 +674,7 @@ header {
                 font-weight: 500;
                 line-height: normal;
                 text-transform: uppercase;
-                margin: 12px 0 15px 0;
+                margin: 12px 0;
             }
 
             .description {
@@ -1017,7 +1026,6 @@ footer.footer-block {
                 right: 15px;
                 width: 15px;
                 height: 11px;
-                text-indent: -99999px;
                 &.btn {
                     z-index: 9;
                 }
@@ -1434,8 +1442,8 @@ footer.footer-block {
 
 .toggle-sidebar {
     position: fixed;
-    top: 120px;
-    left: 64px;
+    top: 160px;
+    left: 30px;
     border: none;
     padding: 0;
     cursor: pointer;
@@ -1781,7 +1789,12 @@ footer {
     .modal-close.invert {
         border: 0;
         fill: #000;
-        top: 60px;
+        top: 0px;
+        right: 0px;
+        padding: 5px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
     }
     .modal-body {
         display: flex;
@@ -1822,17 +1835,20 @@ footer {
                 border-radius: 0;
                 gap: 20px;
                 margin-bottom: 20px;
+                flex-direction: column;
             }
             .js-news-popup-submit {
                 margin: auto;
                 display: flex;
-                width: 180px;
+                width: 100%;
                 background: #000;
                 color: #fff;
                 position: relative;
                 height: 54px;
                 top: revert;
                 right: revert;
+                justify-content: center;
+                align-items: center;
 
                 &::placeholder {
                     color: #fff;

@@ -15,20 +15,20 @@ style.scss.tpl
     // Font families
     // SVG Icons
     // Texts
-    // Backgrounds 
+    // Backgrounds
   #Components
     // Margin and Padding
     // Mixins
     // Animations
     // Wrappers
     // Placeholders
-    // Dividers    
+    // Dividers
     // Breadcrumbs
     // Headings
     // Buttons
     // Links
     // Chips
-    // Progress bar 
+    // Progress bar
     // Modals
     // Forms
     // Alerts and Notifications
@@ -73,7 +73,7 @@ style.scss.tpl
 {#/*============================================================================
   #Colors and fonts
 ==============================================================================*/#}
-	
+
 {# /* // Colors */ #}
 
 $primary-color: {{ settings.primary_color }};
@@ -140,9 +140,10 @@ $body-font: {{ settings.font_rest | raw }};
 
 .bg-primary{
   background-color: $primary-color!important;
-  color: $main-background!important;
+  color: $main-background;
   a{
-    color: $main-background!important;
+    color: $main-background;
+    width: 100%;
   }
 }
 
@@ -477,7 +478,7 @@ h6,.h6{
     }
     &.btn-circle.chevron:before {
       content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="{{ settings.primary_color |replace("#","%23") }}"><path d="M17.525 36.465l-7.071 7.07c-4.686 4.686-4.686 12.284 0 16.971L205.947 256 10.454 451.494c-4.686 4.686-4.686 12.284 0 16.971l7.071 7.07c4.686 4.686 12.284 4.686 16.97 0l211.051-211.05c4.686-4.686 4.686-12.284 0-16.971L34.495 36.465c-4.686-4.687-12.284-4.687-16.97 0z"/></svg>');
-    } 
+    }
   }
   &-block{
     float: left;
@@ -662,7 +663,7 @@ textarea {
   font-family: $body-font;
 }
 
-.form-control::-webkit-input-placeholder { 
+.form-control::-webkit-input-placeholder {
   color: rgba($main-foreground, .3);
 }
 .form-control:-moz-placeholder {
@@ -946,7 +947,7 @@ input::-webkit-outer-spin-button{
     }
     &-danger {
         color: set-foreground-color($main-background, #cc4845);
-    }   
+    }
 }
 
 {# /* // Tooltip */ #}
@@ -955,7 +956,7 @@ input::-webkit-outer-spin-button{
   background: $secondary-color;
   color: $primary-color;
 }
-    
+
 .tooltip-arrow{
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
@@ -1148,7 +1149,7 @@ input::-webkit-outer-spin-button{
 .newsletter .form-control{
   border: 0;
   color: $primary-color;
-  &::-webkit-input-placeholder { 
+  &::-webkit-input-placeholder {
     color: $primary-color;
   }
   &:-moz-placeholder {
@@ -1279,7 +1280,7 @@ input::-webkit-outer-spin-button{
   color: $accent-color;
   font-weight: bold;
 }
-    
+
 .social-share {
   @extend %element-margin;
   .social-share-button {
@@ -1360,13 +1361,13 @@ input::-webkit-outer-spin-button{
   .notification a,
   .notification .svg-icon-text {
     color: $main-background;
-    fill: $main-background; 
+    fill: $main-background;
   }
 
   .form-control{
     color: $primary-color;
     border: 1px solid $primary-color;
-    &::-webkit-input-placeholder { 
+    &::-webkit-input-placeholder {
       color: $primary-color;
     }
     &:-moz-placeholder {
@@ -1426,7 +1427,7 @@ input::-webkit-outer-spin-button{
   }
   .form-control{
     color: $primary-color;
-    &::-webkit-input-placeholder { 
+    &::-webkit-input-placeholder {
       color: $primary-color;
     }
     &:-moz-placeholder {
@@ -1459,7 +1460,7 @@ input::-webkit-outer-spin-button{
       .list-subitems {
         background-color: set-subnav-color($primary-color);
       }
-    } 
+    }
   }
 }
 
@@ -1492,7 +1493,7 @@ input::-webkit-outer-spin-button{
       .list-subitems {
         background-color: set-subnav-color($main-background);
       }
-    } 
+    }
   }
 }
 
@@ -1525,7 +1526,7 @@ input::-webkit-outer-spin-button{
       .list-subitems {
         background-color: set-subnav-color($main-foreground);
       }
-    } 
+    }
   }
 }
 
@@ -1567,10 +1568,10 @@ input::-webkit-outer-spin-button{
     background: darken($main-background, 10%);
   }
   .desktop-dropdown::-webkit-scrollbar-thumb {
-    background: darken($primary-color, 0%); 
+    background: darken($primary-color, 0%);
   }
   .desktop-dropdown::-webkit-scrollbar-thumb:hover {
-    background: darken($primary-color, 10%); 
+    background: darken($primary-color, 10%);
   }
   .desktop-list-subitems {
     background-color: rgba($main-background, .95);
@@ -1591,7 +1592,7 @@ input::-webkit-outer-spin-button{
     background: darken($main-background, 20%);
   }
   .desktop-dropdown::-webkit-scrollbar-thumb {
-    background: lighten($main-foreground, 20%); 
+    background: lighten($main-foreground, 20%);
   }
   .desktop-dropdown::-webkit-scrollbar-thumb:hover {
     background: lighten($main-foreground, 30%);
@@ -1699,7 +1700,7 @@ footer {
 
 {# /* // Min width 768px */ #}
 
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
 
   {# /* //// Components */ #}
 

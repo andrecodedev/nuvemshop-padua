@@ -19,7 +19,7 @@
             visibility_condition: settings.payment_discount_price,
             location: 'product',
             container_classes: "h4 text-accent font-weight-bold mt-1",
-        }) 
+        })
     }}
 
     {% set show_compare_price_saved_amount = not (settings.payment_discount_price and max_payment_discount.value > 0) and settings.compare_price_saved_money %}
@@ -33,7 +33,7 @@
                 amount_message: 'font-small',
             },
             discount_percentage_classes: 'ml-2 label label-small label-accent m-0',
-        }) 
+        })
     }}
 </div>
 
@@ -67,11 +67,11 @@
 
 {% if show_payments_info or hasDiscount %}
     <div data-toggle="#installments-modal" data-modal-url="modal-fullscreen-payments" class="js-modal-open js-fullscreen-modal-open js-product-payments-container row mb-4" {% if not (product.get_max_installments and product.get_max_installments(false)) %}style="display: none;"{% endif %}>
-            
+
         {% if show_payments_info %}
             {% set max_installments_without_interests = product.get_max_installments(false) %}
             {% set installments_without_interests = max_installments_without_interests and max_installments_without_interests.installment > 1 %}
-            {% set card_icon_color = installments_without_interests ? 'svg-icon-accent' : 'svg-icon-text' %}   
+            {% set card_icon_color = installments_without_interests ? 'svg-icon-accent' : 'svg-icon-text' %}
 
             <div class="col-12 mb-2">
                 <span class="float-left mr-2">
@@ -151,7 +151,7 @@
     {% endif %}
 
     {# GUIA DE MEDIAS #}
-    
+
     <button id="btn-size-guide" class="ml-auto mb-3" style="border:none;outline: none;background: transparent;overflow: hidden;color: #000;text-align: right;text-overflow: ellipsis;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;text-decoration-line: underline;text-transform: uppercase;">
         GUIA DE TAMANHOS
     </button>
@@ -234,13 +234,13 @@
 
     {# Product informative banners #}
 
-    {# {% include 'snipplets/product/product-informative-banner.tpl' %} #}
+    {% include 'snipplets/product/product-informative-banner.tpl' %}
 </form>
 
 {% if product.description is not empty and '<table' in product.description %}
     <div class="product-description">
         <div class="d-none">{{ product.description }}</div>
-        
+
         <div id="collapsible-container"></div>
     </div>
 {% endif %}

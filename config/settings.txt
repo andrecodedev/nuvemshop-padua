@@ -106,25 +106,6 @@ Tipo de letra
 			"Droid Sans", Sans-serif = Droid Sans
 			"DM Sans", 'sans-serif' = DM Sans
 
-Tipo de diseño
-	meta
-		icon = magic
-		advanced = true
-	subtitle
-		subtitle = Bordes
-	description
-		description = Define el aspecto general de los bordes (de fotos y banners principalmente).
-	checkbox
-		name = theme_rounded
-		description = Usar bordes redondeados
-	subtitle
-		subtitle = Íconos
-	description
-		description = Define el aspecto general de los íconos.
-	checkbox
-		name = icons_solid
-		description = Usar íconos gruesos
-
 Encabezado
 	meta
 		icon = arrow-up
@@ -211,6 +192,9 @@ Página de inicio
 	checkbox
 		name = slider_full
 		description = Extender al ancho de la pantalla
+	checkbox
+		name = slider_viewport_height
+		description = Usar el mismo alto para todas las imágenes
 	subtitle
 		subtitle = Imágenes para computadoras
 	gallery
@@ -342,7 +326,6 @@ Página de inicio
 	i18n_input
 		name = banner_services_04_url
 		description = Link
-
 	collapse
 		title = Mensaje institucional
 		backto = home_order_position
@@ -518,8 +501,8 @@ Página de inicio
 		name = banner_full
 		gallery_image = Agregar imagen
 		gallery_link = [Opcional] Página web a la que quieres que te lleve la imagen al hacer click
-		gallery_width = 300
-		gallery_height = 200
+		gallery_width = 1200
+		gallery_height = 500
 		gallery_more_info = true
 
 	collapse
@@ -637,28 +620,12 @@ Listado de productos
 		icon = list-ul
 		advanced = true
 	title
-		title = Imaagem padrão para o topo da lista de produtos
+		title = Imagem padrão para o topo da lista de produtos
 	image
 		title = Cargar imagen (JPG, GIF, PNG)
 		original = banner-products.jpg
 		width = 648
 		height = 530
-	title
-		title = Imagens que aparece no inicio dos produtos
-	gallery
-		name = images_lista_produtos_init
-		gallery_image = Agregar imagen
-		gallery_link = [Opcional] Página web a la que quieres que te lleve la imagen al hacer click
-		gallery_width = 648
-		gallery_height = 530
-	title
-		title = Imagem que aparece no final dos produtos
-	gallery
-		name = images_lista_produtos_end
-		gallery_image = Agregar imagen
-		gallery_link = [Opcional] Página web a la que quieres que te lleve la imagen al hacer click
-		gallery_width = 1580
-		gallery_height = 450
 	subtitle
 		subtitle = Podés subir una imagen diferente para cada categoría <a target='_blank' href='/admin/categories/'>desde acá</a>
 	title
@@ -902,6 +869,9 @@ Páginas Instucionais
 		subtitle = Edite as seções das página de institucionais.
 	collapse
 		title = Página de sobre
+	i18n_input
+		name = about_page_01_url
+		description = Página associada
 	description
 		description = Seções da página de sobre do site.
 	subtitle
@@ -1001,6 +971,9 @@ Páginas Instucionais
 		description = Descripción
 	collapse
 		title = Página de PRESS
+	i18n_input
+		name = press_page_02_url
+		description = Página associada
 	description
 		description = Blocos da página de PRESS do site.
 	gallery
@@ -1127,3 +1100,19 @@ Edición avanzada de CSS
 		description = Acá podes escribir código CSS para que se muestre en tu tienda
 	subtitle
 		subtitle = <a target='_blank' href='https://ayuda.tiendanube.com/es_ES/123225-edicion-avanzada-de-css/como-editar-el-diseno-con-codigo-css'>¿Cómo edito el código CSS de mi tienda?</a>
+	collapse
+		title = Desativar espaços reservados e valores padrão
+	subtitle
+		subtitle = Marque as caixas para desativar os textos e imagens padrão, como placeholders e defaults, que aparecem enquanto você preenche os campos. Com essa opção ativada, você não verá esses elementos, nem enquanto estiver preenchendo.
+	checkbox
+		name = disable_defaults_site
+		description = Desativar do site todo
+	checkbox
+		name = disable_defaults_encabezado
+		description = Desativar do cabeçalho
+	checkbox
+		name = disable_defaults_homepage
+		description = Desativar da página inicial
+	checkbox
+		name = disable_defaults_footer
+		description = Desativar do rodapé

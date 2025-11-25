@@ -487,7 +487,7 @@ DOMContentLoaded.addEventOrExecute(() => {
                 head_height = jQueryNuvem(".js-head-main").height();
             } else {
                 // On mobile we want a fixed spacing so the home slider doesn't overlap the header
-                head_height = 97; // 97px on smaller screens
+                head_height = 150; // 150px on smaller screens
             }
 
             // Apply paddingTop on load so content appears below fixed header
@@ -505,7 +505,7 @@ DOMContentLoaded.addEventOrExecute(() => {
                 }else{
 
                     // On mobile we use the fixed 150px spacing
-                    jQueryNuvem(selector).css("paddingTop", '97px');
+                    jQueryNuvem(selector).css("paddingTop", '150px');
                 }
             });
         }
@@ -518,14 +518,14 @@ DOMContentLoaded.addEventOrExecute(() => {
 
         {% if template == 'category' or template == 'search' %}
             // Apply same offset to product listing grid so header-fixed doesn't overlap
-            // For category banner row use explicit paddings: desktop 116px, mobile 74px
+            // For category banner row use explicit paddings: desktop 67px, mobile 123px
             (function(){
                 var selector = '.block-category-topo';
                 function setCategoryTopoPadding(){
                     if (window.innerWidth > 768) {
-                        jQueryNuvem(selector).css('paddingTop', '116px').css('marginTop', '0px');
+                        jQueryNuvem(selector).css('paddingTop', '67px').css('marginTop', '0px');
                     } else {
-                        jQueryNuvem(selector).css('paddingTop', '74px').css('marginTop', '0px');
+                        jQueryNuvem(selector).css('paddingTop', '123px').css('marginTop', '0px');
                     }
                 }
                 setCategoryTopoPadding();

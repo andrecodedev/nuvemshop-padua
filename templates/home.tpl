@@ -22,7 +22,7 @@
 {% set newArray = [] %}
 
 <div class="js-home-sections-container">
-	{% for i in 0..11 %}
+	{% for i in 0..13 %}
 		{% set section = 'home_order_position_' ~ i %}
 		{% set section_select = attribute(settings,"#{section}") %}
 

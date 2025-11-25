@@ -23,6 +23,7 @@
 #}
 
 {% set modal_overlay = modal_overlay | default(true) %}
+{% set use_defaults = not settings.disable_defaults_site and not settings.disable_defaults_homepage %}
 
 <div id="{{ modal_id }}" class="js-modal {% if modal_mobile_full_screen %}js-fullscreen-modal{% endif %} modal modal-{{ modal_class }} modal-{{modal_position}} transition-{{modal_transition}} modal-{{modal_width}} transition-soft {% if modal_zindex_top %}modal-zindex-top{% endif %}" style="display: none;" {% if data_component %}data-component="{{ data_component }}"{% endif %}>
     {% if modal_form_action %}
@@ -49,8 +50,8 @@
                         <svg class="icon-inline icon-lg modal-close-icon icon-w-10"><use xlink:href="#times"/></svg>
                     </span>
                 {% endif %}
-         
-                <div class="modal-body">
+
+                <div class="modal-body p-4">
                     {% block modal_body %}{% endblock %}
                 </div>
     {% if modal_footer and modal_fixed_footer %}

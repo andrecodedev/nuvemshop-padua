@@ -1,13 +1,34 @@
-{% if 'about' in page.url %}
+{# pagina de campanha #}
+{% set page_current_01 = settings.about_page_01_url %}
+{% set page_current_02 = settings.about_page_02_url %}
+
+{# compara page.url ou page.handle com as settings configuradas #}
+{% set is_about_01 = page_current_01 and (page.url == page_current_01 or page.handle == page_current_01) %}
+{% set is_about_02 = page_current_02 and (page.url == page_current_02 or page.handle == page_current_02) %}
+
+{% set is_on_about_page = is_about_01 or is_about_02 %}
+
+{# fallback: detecta pela url/handle se não houver settings configuradas #}
+{% set is_about_name = (page.url is defined and 'about' in page.url) or (page.handle is defined and 'about' in page.handle) %}
+{% set is_press_name = (page.url is defined and 'press' in page.url) or (page.handle is defined and 'press' in page.handle) %}
+
+{% set settings_name = '' %}
+{% if is_about_01 or is_about_name %}
+	{% set settings_name = 'about_page_01' %}
+{% elseif is_about_02 or is_press_name %}
+	{% set settings_name = 'about_page_02' %}
+{% endif %}
+
+{% if is_about_01 or is_about_name %}
 	{% include 'snipplets/paginas_institu/about.tpl' %}
-{% elseif 'press' in page.url %}
+{% elseif is_about_02 or is_press_name %}
 	{% include 'snipplets/paginas_institu/press.tpl' %}
 {% else %}
 
 	<!-- Institutional page -->
 	<section class="user-content pb-5">
 		<h2>{{ page.name }}</h2>
-		
+
 		<div class="justify-content-md-center">
 			{{ page.content }}
 		</div>
@@ -49,9 +70,9 @@
 		const sidebar = document.querySelector('.sidebar');
 		const toggleButton = document.querySelector('.toggle-sidebar');
 		const closeButton = document.querySelector('.close-sidebar');
-		const menuLinks = document.querySelectorAll('.sidebar-menu a'); 
-		const currentURL = window.location.pathname; 
-	
+		const menuLinks = document.querySelectorAll('.sidebar-menu a');
+		const currentURL = window.location.pathname;
+
 		menuLinks.forEach(link => {
 			if (link.getAttribute('href').includes(currentURL) ) {
 				link.classList.add('active');
@@ -60,17 +81,17 @@
 		toggleButton.addEventListener('click', function () {
 			sidebar.classList.toggle('active');
 		});
-	
+
 		closeButton.addEventListener('click', function () {
 			sidebar.classList.remove('active');
 		});
-	
+
 		document.addEventListener('click', function (e) {
 			if (!sidebar.contains(e.target) && !toggleButton.contains(e.target)) {
 				sidebar.classList.remove('active');
 			}
 		});
 	});
-	
+
 </script>
 

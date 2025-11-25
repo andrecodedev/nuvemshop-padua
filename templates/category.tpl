@@ -1,4 +1,5 @@
 {% set has_filters_available = products and has_filters_enabled and (filter_categories is not empty or product_filters is not empty) %}
+{% set use_defaults = not settings.disable_defaults_site and not settings.disable_defaults_footer %}
 
 {# Only remove this if you want to take away the theme onboarding advices #}
 {% set show_help = not has_products %}
@@ -31,27 +32,36 @@
 				</div>
 				<div class="col-12 col-md-7 -image">
 					{% set image_sizes = ['small', 'large', 'huge', 'original', '1080p'] %}
-					{% set category_images = [] %}
+					{% set category_images = {} %}
 					{% set has_category_images = category.images is not empty %}
+					{% set has_banner_product = 'banner-products.jpg' | has_custom_image %}
 
-					{% for size in image_sizes %}
-						{% if has_category_images %}
-							{# Define images for admin categories #}
+					{% if has_category_images %}
+						{% for size in image_sizes %}
 							{% set category_images = category_images|merge({(size):(category.images | first | category_image_url(size))}) %}
-						{% else %}
-							{# Define images for general banner #}
+						{% endfor %}
+					{% elseif has_banner_product %}
+						{% for size in image_sizes %}
 							{% set category_images = category_images|merge({(size):('banner-products.jpg' | static_url | settings_image_url(size))}) %}
-						{% endif %}
-					{% endfor %}
+						{% endfor %}
+					{% else %}
+					{% if use_defaults %}
+						{% set safe_name = category.name|default('Categoria') %}
+						{% set placeholder_base = 'https://placehold.co/648x530?text=648x530 : ' ~ (safe_name|url_encode) %}
+						{% for size in image_sizes %}
+							{% set category_images = category_images|merge({(size):(placeholder_base)}) %}
+						{% endfor %}
+					{% endif %}
+					{% endif %}
 
-					{% set category_image_url = 'banner-products.jpg' | static_url %}
-					<img class="lazyautosizes lazyload blur-up position-relative w-100" src="{{ category_images['small'] }}" data-srcset="{{ category_images['large'] }} 480w, {{ category_images['huge'] }} 640w, {{ category_images['original'] }} 1024w, {{ category_images['1080p'] }} 1920w" data-sizes="auto" alt="{{ 'Banner de la categoría' | translate }} {{ category.name }}"/>
+					{% set category_image_url = category_images['original'] %}
+					<img class="lazyautosizes lazyload blur-up position-relative w-100" src="{{ category_images['small'] }}" data-srcset="{{ category_images['large'] }} 480w, {{ category_images['huge'] }} 640w, {{ category_images['original'] }} 1024w, {{ category_images['1080p'] }} 1920w" data-sizes="auto" alt="{{ 'Banner de la categoría' | translate }} {{ category.name|default('') }}"/>
 				</div>
 			</div>
 		</section>
 
 		<section class="js-category-controls category-controls container visible-when-content-ready">
-			<div class="row align-items-center mb-md-2">
+			<div class="row align-items-center my-md-2" style="padding-top: 8px;">
 				<div class="col-12">
 					<div class="row">
 
@@ -91,7 +101,7 @@
 							</div>
 						</div>
 
-						<div class="col-0 col-md-4 align-self-center" style='padding-bottom: 6px;'>
+						<div class="col-4 align-self-center" style='padding-bottom: 6px; padding-right: 0px;'>
 							{% include "snipplets/breadcrumbs.tpl" %}
 						</div>
 

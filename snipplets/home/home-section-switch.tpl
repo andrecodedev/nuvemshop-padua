@@ -69,7 +69,7 @@
     {% else %}
         {% include 'snipplets/home/home-banner-full.tpl' %}
     {% endif %}
-            
+
 {% elseif section_select == 'new' %}
 
     {#  **** New products ****  #}
@@ -108,6 +108,10 @@
         {% include 'snipplets/home/home-instafeed.tpl' %}
     {% endif %}
 
+{% elseif section_select == 'newsletter' %}
+
+    {#  **** Newsletter ****  #}
+    {% include 'snipplets/newsletter.tpl' %}
 {% elseif section_select == 'promotional' %}
 
     {#  **** Promotional banners ****  #}
@@ -118,10 +122,4 @@
             {% include 'snipplets/home/home-promotional.tpl' %}
         {% endif %}
     </section>
-
-{% elseif section_select == 'newsletter' %}
-
-    {#  **** Newsletter ****  #}
-    {% include 'snipplets/newsletter.tpl' %}
-
 {% endif %}
