@@ -70,7 +70,7 @@ Colores de tu marca
 				footer_foreground_color = #000000
 	subtitle
 		subtitle = <a target='_blank' href='https://ayuda.tiendanube.com/es_ES/124497-colores-de-tu-marca/como-cambiar-los-colores-de-mi-diseno/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio los colores de mi diseño?</a>
-		
+
 Tipo de letra
 	meta
 		icon = font
@@ -211,9 +211,6 @@ Página de inicio
 	checkbox
 		name = slider_full
 		description = Extender al ancho de la pantalla
-	checkbox
-		name = slider_viewport_height
-		description = Usar el mismo alto para todas las imágenes
 	subtitle
 		subtitle = Imágenes para computadoras
 	gallery
@@ -563,7 +560,7 @@ Página de inicio
 	i18n_input
 		show_if = banner_promotional_01_show
 		name = banner_promotional_01_url
-		description = Link	
+		description = Link
 	image
 		show_if = banner_promotional_01_show
 		original = banner_promotional_logo_01.png
@@ -573,7 +570,7 @@ Página de inicio
 
 	collapse
 		title = Publicaciones de Instagram
-		backto = home_order_position	
+		backto = home_order_position
 	description
 		description = El Feed de Instagram muestra automáticamente tus últimas publicaciones en la página de inicio de tu tienda. Tu perfil debe ser público.
 	checkbox
@@ -647,7 +644,7 @@ Listado de productos
 		width = 648
 		height = 530
 	title
-		title = Imagens que aparece no inicio dos produtos 
+		title = Imagens que aparece no inicio dos produtos
 	gallery
 		name = images_lista_produtos_init
 		gallery_image = Agregar imagen
@@ -655,7 +652,7 @@ Listado de productos
 		gallery_width = 648
 		gallery_height = 530
 	title
-		title = Imagem que aparece no final dos produtos 
+		title = Imagem que aparece no final dos produtos
 	gallery
 		name = images_lista_produtos_end
 		gallery_image = Agregar imagen

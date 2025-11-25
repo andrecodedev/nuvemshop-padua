@@ -91,7 +91,7 @@
 							</div>
 						</div>
 
-						<div class="col-4 align-self-center" style='padding-bottom: 6px;'>
+						<div class="col-0 col-md-4 align-self-center" style='padding-bottom: 6px;'>
 							{% include "snipplets/breadcrumbs.tpl" %}
 						</div>
 
@@ -120,15 +120,15 @@
 			<div class="container-fluid">
 				<div
 					class="row">
-					{# {% if has_filters_available %} 
+					{# {% if has_filters_available %}
 									<div class="col col-md-2 d-none pr-0 d-md-block visible-when-content-ready">
 										{% if filter_categories is not empty %}
 											{% include "snipplets/grid/categories.tpl" %}
 										{% endif %}
-										{% if product_filters is not empty %}	   
+										{% if product_filters is not empty %}
 											{% include "snipplets/grid/filters.tpl" %}
 										{% endif %}
-									</div> 
+									</div>
 								{% endif %} #}
 					<div class="col" data-store="category-grid-{{ category.id }}">
 						{% if products %}
@@ -145,18 +145,18 @@
 											</svg>
 										</a>
 									{% endif %}
-									
+
 									{% if pages.next or pages.previous %}
 									<p>página</p>
 									{% endif %}
-									
+
 									{% for page in pages.numbers %}
 										{% if page.selected %}
 											<strong>{{ page.number }}</strong>
 											<p>de</p>
 										{% endif %}
 									{% endfor %}
-									
+
 									{% for page in pages.numbers %}
 										{% if loop.last %}
 											<a href="{{ page.url }}">

@@ -51,7 +51,7 @@
 
             {# Search icon ued for mobile when categories are exposed #}
             {% if settings.head_utility == 'categories' or (settings.head_utility == 'categories' and settings.logo_position_mobile == 'left') or settings.head_utility == 'icons' %}
-                <div class="col-2 {% if settings.logo_position_mobile == 'left' or (settings.logo_position_mobile == 'center' and settings.head_utility == 'icons') %}{% if not (settings.logo_position_mobile == 'center' and settings.head_utility == 'icons') %}ml-2{% endif %}{% else %}text-left{% endif %}">
+                <div class="col-2 d-flex justify-content-center {% if settings.logo_position_mobile == 'left' or (settings.logo_position_mobile == 'center' and settings.head_utility == 'icons') %}{% if not (settings.logo_position_mobile == 'center' and settings.head_utility == 'icons') %}ml-2{% endif %}{% else %}text-left{% endif %}">
                     <button class="js-modal-open-search utilities-link utilities-item" aria-label="{{ 'Buscador' | translate }}">
                         <svg class="icon-inline icon-2x"><use xlink:href="#search"/></svg>
                     </button>
@@ -59,18 +59,18 @@
             {% endif %}
 
             {# Logo for mobile and desktop #}
-            
+
             <div class="nav-desktop col-8 d-none d-md-flex order-md-2 align-items-center justify-content-center">
                 <ul class="js-nav-desktop-list nav-desktop-list" data-store="navigation" data-component="menu">
                     {% include 'snipplets/navigation/navigation-nav-list.tpl' with {'desktop_nav': true, 'navigation': navigation[:(navigation | length) / 2]} %}
                 </ul>
-            
+
                 <div class="">
                     {% set logo_size_class = settings.logo_size == 'small' ? 'logo-img-small' : settings.logo_size == 'big' ? 'logo-img-big' %}
                     {{ component('logos/logo', {logo_img_classes: 'transition-soft ' ~ logo_size_class, logo_text_classes: 'h5 h3-md mb-0'}) }}
                 </div>
-    
-            
+
+
                 <ul class="js-nav-desktop-list nav-desktop-list" data-store="navigation" data-component="menu">
                     {% include 'snipplets/navigation/navigation-nav-list.tpl' with {'desktop_nav': true, 'navigation': navigation[(navigation | length) / 2:]} %}
                 </ul>
@@ -81,8 +81,8 @@
                 {{ component('logos/logo', {logo_img_classes: 'transition-soft ' ~ logo_size_class, logo_text_classes: 'h5 h3-md mb-0'}) }}
             </div>
 
-            {# Desktop Search, used on mobile when setting is set to show "big search" 
-            
+            {# Desktop Search, used on mobile when setting is set to show "big search"
+
             <div class="{% if settings.head_utility == 'searchbox' %}col-12 order-last order-md-0{% else %}col-6 d-none d-md-block{% endif %} text-center {% if settings.logo_position_desktop == 'center' %}col-md-3 col-lg-3 order-md-1{% elseif settings.icons_size_desktop == 'small' and settings.logo_position_desktop == 'left' %}col-md-6 col-lg-5{% else %}col-md-6 col-lg-6{% endif %}">
                 {% snipplet "header/header-search.tpl" %}
             </div>
@@ -136,7 +136,7 @@
             {# <div class="col text-center p-0 d-none d-md-block">{% snipplet "navigation/navigation.tpl" %}</div> #}
         </div>
 
-	</div>    
+	</div>
     {% include "snipplets/notification.tpl" with {order_notification: true} %}
 
     {% snipplet "header/header-search.tpl" %}
@@ -193,7 +193,7 @@
 
 {# Modal Search #}
 
-{% if not store.is_catalog and settings.ajax_cart and template != 'cart' %}           
+{% if not store.is_catalog and settings.ajax_cart and template != 'cart' %}
 
     {# Cart Ajax #}
 

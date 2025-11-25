@@ -56,7 +56,7 @@ style.css
   #Critical path utilities
 
 ==============================================================================*/#}
-  
+
 
 {# /* // Margin and Padding */ #}
 
@@ -100,12 +100,12 @@ style.css
     top: -8px;
     @include prefix(transition, all 0.5s ease, webkit ms moz o);
     z-index: 10;
-    pointer-events: none; 
+    pointer-events: none;
     &-active {
       top: 0;
-      opacity: 1; 
+      opacity: 1;
       z-index: 100;
-      pointer-events: all; 
+      pointer-events: all;
     }
 }
 
@@ -122,7 +122,7 @@ style.css
 .swing {
   @include prefix(animation-duration, 1s, webkit ms moz o);
   @include prefix(animation-fill-mode, both, webkit ms moz o);
-  @include prefix(animation-iteration-count, 3, webkit ms moz o);   
+  @include prefix(animation-iteration-count, 3, webkit ms moz o);
   @include prefix(transform-origin, top center, webkit ms moz o);
   @include prefix(animation-name, swing, webkit ms moz o);
 }
@@ -183,7 +183,7 @@ style.css
 
 .btn-transition {
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
   .transition-container {
     position: absolute;
     top: -100%;
@@ -212,8 +212,8 @@ style.css
     &.active {
       top: 50%;
     }
-  } 
-} 
+  }
+}
 
 {# /* // Chips */ #}
 
@@ -320,8 +320,8 @@ style.css
     }
     & +  .radio-button-content .checked{
       position: absolute;
-      top: 0;  
-      left: 0;   
+      top: 0;
+      left: 0;
       @include prefix(transform, translate(-50%,-50%), webkit ms moz o);
       @include prefix(transform, scale(0), webkit ms moz o);
       @include prefix(transition, all 0.2s , webkit ms moz o);
@@ -454,7 +454,7 @@ style.css
 
 .form-select {
   padding: 13px 35px 12px 12px;
-  
+
   &:focus{
     outline:0;
   }
@@ -474,7 +474,7 @@ button{
   &[readonly],
   &[readonly]:hover{
     background-color: #DDD;
-    cursor: not-allowed; 
+    cursor: not-allowed;
   }
 }
 
@@ -586,7 +586,7 @@ button{
     position: absolute;
     top: -5px;
     width: 100%;
-    text-align: center;  
+    text-align: center;
     line-height: 36px;
     opacity: 0;
   }
@@ -713,7 +713,7 @@ button{
     bottom: 0;
     opacity: 1;
   }
-  &-close { 
+  &-close {
     margin-right: 10px;
     // Cursor pointer added to JS is triggered on IOS
     cursor: pointer;
@@ -884,7 +884,7 @@ button{
       }
   }
   .modal-close {
-    margin: 0 0 0 15px; 
+    margin: 0 0 0 15px;
   }
   .navigation-topbar {
     padding: 5px 0;
@@ -964,7 +964,7 @@ button{
     display: inline-block;
     margin: 10px;
     font-size: 14px;
-  } 
+  }
 }
 
 .hamburger-panel{
@@ -983,7 +983,7 @@ button{
             font-weight: 400;
             border-bottom: 0;
         }
-        .list-subitems { 
+        .list-subitems {
             padding: 0;
         }
     }
@@ -1035,7 +1035,7 @@ button{
 .desktop-list-subitems {
   padding: 15px 25px 25px 25px;
   text-align: left;
-  
+
   .nav-item {
     display: block;
     margin: 0;
@@ -1048,6 +1048,8 @@ button{
     .list-subitems {
       padding: 0;
       margin: 0 0 35px 0;
+      display: flex;
+      flex-direction: column;
       .nav-item {
         .nav-list-link {
           font-weight: 400;
@@ -1260,8 +1262,8 @@ footer {
   &:last-child {
     margin: 0;
   }
-}    
-   
+}
+
 {#/*============================================================================
   #Home Page
 ==============================================================================*/#}
@@ -1384,7 +1386,7 @@ footer {
         z-index: 9;
       }
     }
-  } 
+  }
 }
 
 {# /* // Placeholder */ #}
@@ -1395,7 +1397,7 @@ footer {
     left: 0;
     z-index: 9;
     width: 100%;
-    height: 100%;  
+    height: 100%;
 }
 
 .placeholder-info {
@@ -1444,7 +1446,7 @@ footer {
 }
 
 .filter-input-price-container {
-  position: relative; 
+  position: relative;
   display: inline-block;
   width: 85px;
   margin-right: 5px;
@@ -1645,7 +1647,7 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
 
 {# /* // Min width 768px */ #}
 
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
 
   {# /* //// Components */ #}
 
@@ -1685,7 +1687,7 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
       }
     }
   }
-  .modal-close { 
+  .modal-close {
     position: absolute;
     top: 10px;
     right: 15px;

@@ -45,7 +45,7 @@
 		// Add to cart
 		// Product quantity
 	#Cart
-		// Free shipping bar 
+		// Free shipping bar
 		// Add to cart
 		// Cart quantitiy changes
 		// Empty cart alert
@@ -98,12 +98,12 @@ DOMContentLoaded.addEventOrExecute(() => {
 	==============================================================================*/ #}
     const openSearchBtn = document.querySelector('.js-modal-open-search');
     const blockSearch = document.querySelector('.block-search');
-    
+
     openSearchBtn.addEventListener('click', (e) => {
          e.stopPropagation(); // Impede que o clique propague para o document
         blockSearch.classList.toggle('active');
     });
-    
+
     document.addEventListener('click', (e) => {
         if (!blockSearch.contains(e.target) && !openSearchBtn.contains(e.target)) {
             blockSearch.classList.remove('active');
@@ -123,9 +123,9 @@ DOMContentLoaded.addEventOrExecute(() => {
     var $notification_status_page = jQueryNuvem(".js-notification-status-page");
     var $quick_login_notification = jQueryNuvem(".js-notification-quick-login");
     var $fixed_bottom_button = jQueryNuvem(".js-btn-fixed-bottom");
-    
+
 	{# /* // Follow order status notification */ #}
-    
+
     if ($notification_status_page.length > 0){
         if (LS.shouldShowOrderStatusNotification($notification_status_page.data('url'))){
             $notification_status_page.show();
@@ -154,9 +154,9 @@ DOMContentLoaded.addEventOrExecute(() => {
         var logoBarHeight = jQueryNuvem(".js-nav-logo-bar").outerHeight();
         var searchBarHeight = jQueryNuvem(".js-search-container").outerHeight();
         if (window.innerWidth > 768) {
-            var fixedNotificationPosition = topBarHeight + logoBarHeight; 
+            var fixedNotificationPosition = topBarHeight + logoBarHeight;
         }else{
-            var fixedNotificationPosition = logoBarHeight - searchBarHeight; 
+            var fixedNotificationPosition = logoBarHeight - searchBarHeight;
         }
         var $addedToCartNotification = jQueryNuvem(".js-alert-added-to-cart");
         var $addedToCartNotificationArrow = $addedToCartNotification.find(".js-cart-notification-arrow-up");
@@ -194,7 +194,7 @@ DOMContentLoaded.addEventOrExecute(() => {
                 {% endif %}
                 return;
             }
-            
+
         },500);
 
     {% endif %}
@@ -242,7 +242,7 @@ DOMContentLoaded.addEventOrExecute(() => {
             jQueryNuvem(".js-notification-cookie-banner").show();
 
             {# Offset to show legal footer #}
-                
+
             const cookieBannerHeight = jQueryNuvem(".js-notification-cookie-banner").outerHeight();
             footerLegal.css("paddingBottom", cookieBannerHeight + footerOffset + "px");
 
@@ -333,7 +333,7 @@ DOMContentLoaded.addEventOrExecute(() => {
     }
 
     jQueryNuvem(document).on("click", ".js-modal-open", function(e) {
-        e.preventDefault(); 
+        e.preventDefault();
         var modal_id = jQueryNuvem(this).data('toggle');
         var $overlay_id = jQueryNuvem('.js-modal-overlay[data-modal-id="' + modal_id + '"]');
         if (jQueryNuvem(modal_id).hasClass("modal-show")) {
@@ -341,7 +341,7 @@ DOMContentLoaded.addEventOrExecute(() => {
             setTimeout(() => modal.hide(), 500);
         } else {
             {# Lock body scroll if there is no modal visible on screen #}
-            
+
             if(!jQueryNuvem(".js-modal.modal-show").length){
                 jQueryNuvem("body").addClass("overflow-none");
             }
@@ -349,11 +349,11 @@ DOMContentLoaded.addEventOrExecute(() => {
             jQueryNuvem(modal_id).detach().appendTo("body");
             $overlay_id.detach().insertBefore(modal_id);
             jQueryNuvem(modal_id).show().addClass("modal-show");
-        }             
+        }
     });
 
     jQueryNuvem(document).on("click", ".js-modal-close", function(e) {
-        e.preventDefault();  
+        e.preventDefault();
 
         {# Remove body lock only if a single modal is visible on screen #}
 
@@ -366,7 +366,7 @@ DOMContentLoaded.addEventOrExecute(() => {
         $modal.removeClass("modal-show");
         setTimeout(() => $modal.hide(), 500);
         $overlay_id.fadeOut(500);
-        
+
         {# Close full screen modal: Remove url hash #}
 
         if ((window.innerWidth < 768) && (jQueryNuvem(this).hasClass(".js-fullscreen-modal-close"))) {
@@ -462,10 +462,10 @@ DOMContentLoaded.addEventOrExecute(() => {
     {# /* // Header */ #}
 
         {% if template == 'home' and settings.head_transparent %}
-            {% if settings.slider and settings.slider is not empty %}        
+            {% if settings.slider and settings.slider is not empty %}
 
                 var $swiper_height = window.innerHeight - 100;
-                
+
                 document.addEventListener("scroll", function() {
                     if (document.documentElement.scrollTop > $swiper_height ) {
                         jQueryNuvem(".js-head-main").removeClass("head-transparent");
@@ -482,17 +482,18 @@ DOMContentLoaded.addEventOrExecute(() => {
         function applyOffset(selector){
 
             // Get nav height on load
+            var head_height = 0;
             if (window.innerWidth > 768) {
-                var head_height = jQueryNuvem(".js-head-main").height();
-                jQueryNuvem(selector).css("marginTop", '-' + head_height.toString() + 'px');
-            }else{
-
-                {# On mobile there is no top padding due to position sticky CSS #}
-                var head_height = 0;
+                head_height = jQueryNuvem(".js-head-main").height();
+            } else {
+                // On mobile we want a fixed spacing so the home slider doesn't overlap the header
+                head_height = 97; // 97px on smaller screens
             }
 
-            // Apply offset nav height on load
-            
+            // Apply paddingTop on load so content appears below fixed header
+            jQueryNuvem(selector).css("paddingTop", head_height.toString() + 'px').css("marginTop", "0px");
+
+            // Apply offset on resize
             window.addEventListener("resize", function() {
 
                 // Get nav height on resize
@@ -500,11 +501,11 @@ DOMContentLoaded.addEventOrExecute(() => {
 
                 // Apply offset on resize
                 if (window.innerWidth > 768) {
-                    jQueryNuvem(selector).css("paddingTop", head_height.toString() + 'px');
+                    jQueryNuvem(selector).css("paddingTop", head_height.toString() + 'px').css("marginTop", "0px");
                 }else{
 
-                    {# On mobile there is no top padding due to position sticky CSS #}
-                    jQueryNuvem(selector).css("paddingTop", "0px");
+                    // On mobile we use the fixed 150px spacing
+                    jQueryNuvem(selector).css("paddingTop", '97px');
                 }
             });
         }
@@ -514,6 +515,24 @@ DOMContentLoaded.addEventOrExecute(() => {
         {% if template == 'home'  %}
             applyOffset("#js-home-slider-fullbanner");
         {% endif %}
+
+        {% if template == 'category' or template == 'search' %}
+            // Apply same offset to product listing grid so header-fixed doesn't overlap
+            // For category banner row use explicit paddings: desktop 116px, mobile 74px
+            (function(){
+                var selector = '.block-category-topo';
+                function setCategoryTopoPadding(){
+                    if (window.innerWidth > 768) {
+                        jQueryNuvem(selector).css('paddingTop', '116px').css('marginTop', '0px');
+                    } else {
+                        jQueryNuvem(selector).css('paddingTop', '74px').css('marginTop', '0px');
+                    }
+                }
+                setCategoryTopoPadding();
+                window.addEventListener('resize', setCategoryTopoPadding);
+            })();
+        {% endif %}
+
         {# Slim header on scroll #}
 
         window.addEventListener("scroll", function() {
@@ -537,8 +556,8 @@ DOMContentLoaded.addEventOrExecute(() => {
             }
         });
 
-            
-    {% endif %}      
+
+    {% endif %}
 
 
     {# /* // Utilities */ #}
@@ -737,7 +756,7 @@ DOMContentLoaded.addEventOrExecute(() => {
                     threshold: 5,
                     watchSlideProgress: true,
                     watchSlidesVisibility: true,
-                    slideVisibleClass: 'js-swiper-slide-visible',                
+                    slideVisibleClass: 'js-swiper-slide-visible',
                     navigation: {
                         nextEl: '.js-swiper-featured-next',
                         prevEl: '.js-swiper-featured-prev',
@@ -836,21 +855,21 @@ DOMContentLoaded.addEventOrExecute(() => {
     {% if template == 'product' %}
         {# /* // DESCRIPTION */ #}
 
-        
+
         const productDescription = document.querySelector('.product-description');
-        
+
         if (productDescription) {
             const descriptionHTML = productDescription.querySelector('.d-none').innerHTML;
-            
+
             // Encontra a posição da tabela
             const tableStartIndex = descriptionHTML.indexOf('<table');
-            
+
             // Se houver uma tabela, separa o conteúdo antes da tabela
             if (tableStartIndex !== -1) {
                 // Conteúdo antes da tabela
                 const contentBeforeTable = descriptionHTML.substring(0, tableStartIndex).trim();
                 const collapsibleContainer = productDescription.querySelector('#collapsible-container');
-                
+
                 // Exibe o conteúdo antes da tabela, se existir
                 if (contentBeforeTable) {
                     const contentDiv = document.createElement('div');
@@ -941,11 +960,11 @@ DOMContentLoaded.addEventOrExecute(() => {
             let productsAmount = jQueryNuvem(sectionSelector).attr("data-related-amount");
             let loopVal = false;
             const applyLoop = (window.innerWidth < 768 && productsAmount > 2) || (window.innerWidth > 768 && productsAmount > desktopColumns);
-            
+
             if (applyLoop) {
                 loopVal = true;
             }
-            
+
             return loopVal;
         }
 
@@ -1051,7 +1070,7 @@ DOMContentLoaded.addEventOrExecute(() => {
 	==============================================================================*/ #}
 
     {# /* // Secondary image on mouseover */ #}
-    
+
     {% if settings.product_hover %}
         if (window.innerWidth > 767) {
             jQueryNuvem(document).on("mouseover", ".js-item-with-secondary-image:not(.item-with-two-images)", function(e) {
@@ -1091,14 +1110,14 @@ DOMContentLoaded.addEventOrExecute(() => {
             });
 
             observer.observe(document.querySelector(".js-category-controls-prev"));
-        } 
-    
-        
+        }
+
+
       function changeGrid(columns) {
   const productItems = document.querySelectorAll('.js-product-table .col-lg-3, .js-product-table .col-lg-4');
   // Agora também selecionamos .grid-3 ou .grid-4
   const bannerItems = document.querySelectorAll('.js-product-table .block-banner.col-lg-6, .js-product-table .block-banner.col-lg-4, .js-product-table .block-banner.grid-3, .js-product-table .block-banner.grid-4');
-  
+
   // Mantém seu código anterior para trocar col-lg-3 ou col-lg-4 nos produtos
   productItems.forEach(item => {
     if (columns === 3) {
@@ -1128,9 +1147,9 @@ DOMContentLoaded.addEventOrExecute(() => {
   // Mantém sua lógica para mudar a opacidade dos botões
   document.querySelectorAll('[data-grid]').forEach(button => {
     if (parseInt(button.getAttribute('data-grid')) === columns) {
-      button.style.opacity = '1'; 
+      button.style.opacity = '1';
     } else {
-      button.style.opacity = '0.4'; 
+      button.style.opacity = '0.4';
     }
   });
 }
@@ -1146,7 +1165,7 @@ document.querySelectorAll('[data-grid]').forEach(button => {
 document.querySelector('[data-grid="4"]').style.opacity = '1';
 document.querySelector('[data-grid="3"]').style.opacity = '0.4';
 
-        
+
 
 
         {# /* // Filters */ #}
@@ -1208,7 +1227,7 @@ document.querySelector('[data-grid="3"]').style.opacity = '0.4';
 	{% endif %}
 
     {% if template == 'category' or template == 'search' %}
-        {# /* // Infinite scroll 
+        {# /* // Infinite scroll
     {# /*
         !function() {
 
@@ -1253,8 +1272,8 @@ document.querySelector('[data-grid="3"]').style.opacity = '0.4';
 
     {% if settings.quick_shop %}
 
-        {# /* // Quickshop */ 
-        
+        {# /* // Quickshop */
+
         jQueryNuvem(document).on("click", ".js-item-buy-open", function(e) {
             e.preventDefault();
             jQueryNuvem(this).toggleClass("btn-primary btn-secondary");
@@ -1616,7 +1635,7 @@ document.querySelector('[data-grid="3"]').style.opacity = '0.4';
 	    if (variant.price_short){
 	        parent.find('.js-price-display').text(variant.price_short).show();
 	        parent.find('.js-price-display').attr("content", variant.price_number).data('productPrice', variant.price_number_raw);
-            
+
             parent.find('.js-payment-discount-price-product').text(variant.price_with_payment_discount_short);
             parent.find('.js-payment-discount-price-product-container').show();
 	    } else {
@@ -1699,7 +1718,7 @@ document.querySelector('[data-grid="3"]').style.opacity = '0.4';
 
         {% if cart.free_shipping.min_price_free_shipping.min_price %}
             {# Updates free shipping bar #}
-            
+
             LS.freeShippingProgress(true, parent);
 
         {% endif %}
@@ -1781,7 +1800,7 @@ document.querySelector('[data-grid="3"]').style.opacity = '0.4';
         selected_option.prop('selected', true).trigger('change');
     }
 
-    
+
         {# /* // Color and size variations */ #}
 
         jQueryNuvem(document).on("click", ".js-insta-variant", function (e) {
@@ -1987,7 +2006,7 @@ document.querySelector('[data-grid="3"]').style.opacity = '0.4';
 	==============================================================================*/ #}
 
     {# /* // Free shipping bar */ #}
-    
+
     {% if cart.free_shipping.min_price_free_shipping.min_price %}
 
         {# Updates free progress on page load #}
@@ -2013,7 +2032,7 @@ document.querySelector('[data-grid="3"]').style.opacity = '0.4';
 
    function getQuickShopImgSrc(element){
         const image = jQueryNuvem(element).closest('.js-quickshop-container').find('img');
-        return String(image.attr('srcset')); 
+        return String(image.attr('srcset'));
     }
 
     jQueryNuvem(document).on("click", ".js-addtocart:not(.js-addtocart-placeholder)", function (e) {
@@ -2056,7 +2075,7 @@ document.querySelector('[data-grid="3"]').style.opacity = '0.4';
                 var addedToCartCopy = "SHOP NOW";
             }
         }
-        
+
 
         if (!jQueryNuvem(this).hasClass('contact')) {
 
@@ -2663,7 +2682,7 @@ document.querySelector('[data-grid="3"]').style.opacity = '0.4';
         },function(swiperInstance) {
             window.brandsSwiper = swiperInstance;
         });
-        
+
 
         createSwiper('.js-swiper-banner_full', {
             lazy: true,
@@ -2757,4 +2776,22 @@ document.querySelector('[data-grid="3"]').style.opacity = '0.4';
 
     {% endif %}
 
+
+    {% if template == 'page' %}
+        {% set page_current_01 = settings.about_page_01_url %}
+        {% set page_current_02 = settings.about_page_02_url %}
+
+        {# Compara o valor configurado com a página atual (tenta page.url e page.handle) #}
+        {% set is_about_01 = page_current_01 and (page.url == page_current_01 or page.handle == page_current_01) %}
+        {% set is_about_02 = page_current_02 and (page.url == page_current_02 or page.handle == page_current_02) %}
+
+        {% set is_on_about_page = is_about_01 or is_about_02 %}
+
+        {% if is_on_about_page %}
+            {% set current_settings_name = is_about_01 ? 'about_page_01' : (is_about_02 ? 'about_page_02' : '') %}
+            // current about settings name
+            var c_settings_name = "{{ current_settings_name }}";
+        {% endif %}
+
+    {% endif %}
 });
