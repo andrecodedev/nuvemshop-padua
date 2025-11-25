@@ -1,0 +1,43 @@
+{# Payments details #}
+
+<div id="single-product" class="js-has-new-shipping js-product-detail js-product-container js-shipping-calculator-container" data-variants="{{product.variants_object | json_encode }}" data-store="product-detail">
+	<div class="container">
+		<div class="row section-single-product">
+			<div class="col-12 col-md-8 pl-md-3 pr-md-3">
+				{% include 'snipplets/product/product-image.tpl' %}
+			</div>
+			<div class="col p-lg-0 product-infos " data-store="product-info-{{ product.id }}">
+				{% include 'snipplets/product/product-form.tpl' %}
+                
+				{# Product share #}
+				{# {% include 'snipplets/social/social-share.tpl' %} #}
+			</div>
+
+		</div>
+		{% if settings.show_product_fb_comment_box %}
+			<div class="fb-comments section-fb-comments" data-href="{{ product.social_url }}" data-num-posts="5" data-width="100%"></div>
+		{% endif %}
+		<div id="reviewsapp"></div>
+	</div>
+</div>
+
+{# Related products #}
+{% include 'snipplets/product/product-related.tpl' %}
+
+<script>
+	const collapseButtons = document.querySelectorAll('.collapse-button');
+	const collapseContents = document.querySelectorAll('.collapse-content-shipping');
+	
+	if (collapseButtons.length != 0) {
+		collapseButtons.forEach((button, index) => {
+			button.addEventListener('click', function () {
+				const content = collapseContents[index];
+				if (content.style.display === "none") {
+					content.style.display = "block";
+				} else {
+					content.style.display = "none";
+				}
+			});
+		});
+	}
+</script>
