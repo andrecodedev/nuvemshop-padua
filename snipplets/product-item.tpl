@@ -16,9 +16,9 @@
 
 {# Item image slider #}
 
-{% set show_image_slider = 
+{% set show_image_slider =
     (template == 'category' or template == 'search')
-    and settings.product_item_slider 
+    and settings.product_item_slider
     and not reduced_item
     and not slide_item
     and not has_filters
@@ -44,7 +44,7 @@
 		{% set has_custom_percentage_off_promotion_label = percentage_off_custom_label and percentage_off_custom_label | trim %}
 		{% set promotion_only_value = has_custom_percentage_off_promotion_label ? false : true %}
 		{% set offer_only_value = has_custom_percentage_off_promotion_label ? true : false %}
-		
+
 		{{ component(
 			'labels', {
 				promotion_only: promotion_only_value,
@@ -62,7 +62,7 @@
 	            visibility_condition: settings.payment_discount_price,
 	            location: 'product',
 	            container_classes: 'font-small font-md-normal text-accent font-weight-bold mt-2',
-	        }) 
+	        })
 	    }}
 		{{ component('subscriptions/subscription-message', {
 			subscription_classes: {
@@ -86,11 +86,11 @@
 			{% endif %}
 		{% endif %}
 
-		{% if 
+		{% if
 			((settings.quick_shop and not product.isSubscribable()) or settings.product_color_variants)
-			and product.available 
-			and product.display_price 
-			and product.variations 
+			and product.available
+			and product.display_price
+			and product.variations
 		%}
 
 	        {# Hidden product form to update item image and variants: Also this is used for quickshop popup #}

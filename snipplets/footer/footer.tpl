@@ -11,7 +11,8 @@
 
 {% set use_defaults = not settings.disable_defaults_site and not settings.disable_defaults_footer %}
 
-<footer class="js-hide-footer-while-scrolling footer-block display-when-content-ready" data-store="footer">
+{# ADICIONADO overflow-x: hidden na tag footer para impedir qualquer rolagem lateral global no rodapé #}
+<footer class="js-hide-footer-while-scrolling footer-block display-when-content-ready" data-store="footer" style="overflow-x: hidden;">
 	<div class="container-fluid px-md-5">
 		<div class="row element-footer">
 
@@ -21,15 +22,15 @@
 				   SEÇÃO SOBRE (ABOUT)
 				========================= #}
 				{% if has_footer_about %}
-					<div class="col-12 col-md-5 mb-4 footer-logo">
+					<div class="col-12 col-md-3 mb-4 footer-logo">
 						{{ component('logos/logo', {logo_img_classes: 'transition-soft ' ~ logo_size_class, logo_text_classes: ''}) }}
 
-						<h4 class="h3" style="max-width:320px;">
-							{{ settings.footer_about_title }}
-						</h4>
-						<p style="max-width:320px;">
-							{{ settings.footer_about_description }}
-						</p>
+						{% if settings.footer_about_title %}
+							<h4 class="h3" style="max-width:320px;">{{ settings.footer_about_title }}</h4>
+						{% endif %}
+						{% if settings.footer_about_description %}
+							<p style="max-width:320px;">{{ settings.footer_about_description }}</p>
+						{% endif %}
 					</div>
 				{% else %}
 					{% if use_defaults %}
@@ -49,13 +50,13 @@
 
 						{# Menu principal #}
 						{% if has_footer_menu %}
-							<div class="col-12 col-md-4">
+							<div class="col-12 col-md-3">
 								<h4 class="h3">{{ settings.footer_menu_title | default('Menu') }}</h4>
 								{% include "snipplets/navigation/navigation-foot.tpl" %}
 							</div>
 						{% else %}
 							{% if use_defaults %}
-							<div class="col-12 col-md-4">
+							<div class="col-12 col-md-3">
 								<h4 class="h3">Menu Principal</h4>
 								<ul>
 									<li><a href="#">1 Link</a></li>
@@ -68,13 +69,13 @@
 
 						{# Menu secundário #}
 						{% if has_footer_menu_secondary %}
-							<div class="col-12 col-md-4">
+							<div class="col-12 col-md-3">
 								<h4 class="h3">{{ settings.footer_menu_secondary_title | default('Links Secundários') }}</h4>
 								{% include "snipplets/navigation/navigation-foot-secondary.tpl" %}
 							</div>
 						{% else %}
 							{% if use_defaults %}
-							<div class="col-12 col-md-4">
+							<div class="col-12 col-md-3">
 								<h4 class="h3">Menu Secundário</h4>
 								<ul>
 									<li><a href="#">1 Link</a></li>
@@ -85,47 +86,25 @@
 							{% endif %}
 						{% endif %}
 
-						{# Newsletter #}
-						<div class="col-12 col-md-4 -newsletter">
-							<h4 class="h3">NEWSLETTER</h4>
-							{% if contact and contact.type == 'newsletter' %}
-								{% if contact.success %}
-									<div class="alert alert-success">{{ "¡Gracias por suscribirte! A partir de ahora vas a recibir nuestras novedades en tu email" | translate }}</div>
-								{% else %}
-								{% if use_defaults %}
-									<div class="alert alert-danger">{{ "Necesitamos tu email para enviarte nuestras novedades." | translate }}</div>
-								{% endif %}
-								{% endif %}
-							{% endif %}
+						{# Contato e Redes Sociais #}
+						{% if has_footer_contact_info %}
+ 							<div class="col-12 col-md-3 element-footer">
+								<h4 class="h3 mb-3">{{ settings.footer_contact_title | default('Informações de contato') }}</h4>
+ 								<div>{% include "snipplets/contact-links.tpl" %}</div>
+							</div>
 
-							<form class="mt-3" method="post" action="/winnie-pooh" onsubmit="this.setAttribute('action', '');" data-store="newsletter-form">
-								<div class="input-append">
-									{% embed "snipplets/forms/form-input.tpl" with{
-										input_for: 'email',
-										type_email: true,
-										input_name: 'email',
-										input_id: 'email',
-										input_placeholder: 'Email' | translate,
-										input_custom_class: "form-control-big",
-										input_aria_label: 'Email' | translate
-									} %}
-									{% endembed %}
-								</div>
-								<input type="submit" name="contact" class="btn newsletter-btn" value="Inscreva-se" />
-							</form>
-
-							<div class="row{% if template == 'password' %} text-center{% endif %}">
-								<div class="col-12 mt-4 mb-2{% if template == 'password' %} text-center{% endif %}">
-									<h4 class="h3">{{ settings.footer_social_title | default('Redes sociais') }}</h4>
+							<div class="col-12 col-md-3 {% if template == 'password' %} text-center{% endif %}">
+								<div class="{% if template == 'password' %} text-center{% endif %}">
+									<h4 class="h3 mb-3">{{ settings.footer_social_title | default('Redes sociais') }}</h4>
 									{% include "snipplets/social/social-links.tpl" with {'circle': true} %}
 								</div>
 							</div>
-						</div>
+						{% endif %}
 
-					</div>
-				</div>
+					</div><!-- Fim row menus -->
+				</div><!-- Fim col menus -->
 			{% endif %}
-		</div>
+		</div><!-- Fim row principal -->
 
 		{# =========================
 		   PAGAMENTO / ENVIO / SELOS
@@ -133,54 +112,53 @@
 		{% if template != 'password' %}
 			{% if has_shipping_payment_logos or has_seal_logos %}
 				<div class="divider mb-5"></div>
-				<div class="row element-footer">
+
+				{# CORREÇÃO IMPORTANTE: Removido px-3 px-md-5 desta ROW para evitar quebra lateral #}
+				<div class="row element-footer justify-content-start">
 
 					{% if has_shipping_payment_logos %}
-			 			<div class="col-md-9">
-				 			<div class="footer-payments-shipping-logos">
-				 				{% if has_payment_logos %}
-				 					<div class="row mb-4">
-				 						<div class="col-md-4">
-					 						<h4 class="h3">{{ "Medios de pago" | translate }}</h4>
-					 					</div>
-					 					<div class="col-md-8">
-					 						{% include "snipplets/logos-icons.tpl" with {'payments': true} %}
-					 					</div>
-				 					</div>
-								{% else %}
-								{% if use_defaults %}
-									<div class="row mb-4">
-										<div class="col-md-4">
-											<h4 class="h3">Medios de pago</h4>
-										</div>
-										<div class="col-md-8">
-											<img src="https://placehold.co/200x40?text=200x40+:+Pagamentos" alt="Pagamentos" class="img-fluid" />
-										</div>
-									</div>
-								{% endif %}
-								{% endif %}
-				 				{% if has_shipping_logos %}
-				 					<div class="row mb-4">
-					 					<div class="col-md-4">
-					 						<h4 class="h3">{{ "Medios de envío" | translate }}</h4>
-					 					</div>
-					 					<div class="col-md-8">
-					 						{% include "snipplets/logos-icons.tpl" with {'shipping': true} %}
-					 					</div>
-				 					</div>
-				 				{% else %}
-								{% if use_defaults %}
-									<div class="row mb-4">
-										<div class="col-md-4">
-											<h4 class="h3">Medios de envío</h4>
-										</div>
-										<div class="col-md-8">
-											<img src="https://placehold.co/200x40?text=200x40+:+Envios" alt="Envios" class="img-fluid" />
-										</div>
-									</div>
-								{% endif %}
-								{% endif %}
+						<div class="col-md-9" style="overflow-x: hidden;">
+						  <div class="row m-0">
+
+							{# ================= PAGAMENTOS ================= #}
+							<div class="col-12 col-md-6 mb-4">
+							  <div class="w-100">
+								<h4 class="h3 mb-2">{{ "Medios de pago" | translate }}</h4>
+
+								<div class="d-flex flex-wrap align-items-center gap-2">
+								  {% if has_payment_logos %}
+									{% include "snipplets/logos-icons.tpl" with {'payments': true} %}
+								  {% else %}
+									{% if use_defaults %}
+									  <img src="https://placehold.co/200x40?text=Pagamentos"
+										   class="img-fluid"
+										   alt="Pagamentos" />
+									{% endif %}
+								  {% endif %}
+								</div>
+							  </div>
 							</div>
+
+							{# ================= ENVIOS ================= #}
+							<div class="col-12 col-md-6 mb-4">
+							  <div class="w-100">
+								<h4 class="h3 mb-2">{{ "Medios de envío" | translate }}</h4>
+
+								<div class="d-flex flex-wrap align-items-center gap-2">
+								  {% if has_shipping_logos %}
+									{% include "snipplets/logos-icons.tpl" with {'shipping': true} %}
+								  {% else %}
+									{% if use_defaults %}
+									  <img src="https://placehold.co/200x40?text=Envios"
+										   class="img-fluid"
+										   alt="Envios" />
+									{% endif %}
+								  {% endif %}
+								</div>
+							  </div>
+							</div>
+
+						  </div>
 						</div>
 					{% endif %}
 

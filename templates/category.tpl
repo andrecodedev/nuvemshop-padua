@@ -55,7 +55,11 @@
 					{% endif %}
 
 					{% set category_image_url = category_images['original'] %}
-					<img class="lazyautosizes lazyload blur-up position-relative w-100" src="{{ category_images['small'] }}" data-srcset="{{ category_images['large'] }} 480w, {{ category_images['huge'] }} 640w, {{ category_images['original'] }} 1024w, {{ category_images['1080p'] }} 1920w" data-sizes="auto" alt="{{ 'Banner de la categoría' | translate }} {{ category.name|default('') }}"/>
+
+                    {# CORREÇÃO AQUI: Só mostra a tag IMG se existir uma imagem definida #}
+                    {% if category_images['small'] %}
+					    <img class="lazyautosizes lazyload blur-up position-relative w-100" src="{{ category_images['small'] }}" data-srcset="{{ category_images['large'] }} 480w, {{ category_images['huge'] }} 640w, {{ category_images['original'] }} 1024w, {{ category_images['1080p'] }} 1920w" data-sizes="auto" alt="{{ 'Banner de la categoría' | translate }} {{ category.name|default('') }}"/>
+                    {% endif %}
 				</div>
 			</div>
 		</section>

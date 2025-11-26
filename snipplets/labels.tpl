@@ -35,7 +35,7 @@
             {% if store.country == 'BR' %}
               {{ "Leve {1} Pague {2}" | translate(product.promotional_offer.script.quantity_to_take, product.promotional_offer.script.quantity_to_pay) }}
             {% else %}
-              {{ product.promotional_offer.script.type }} 
+              {{ product.promotional_offer.script.type }}
             {% endif %}
           {% else %}
             <span class="js-offer-percentage">
@@ -43,9 +43,9 @@
           {% endif %}
         </div>
       {% endif %}
-      {% if store_has_free_shipping %}
+      {# {% if store_has_free_shipping %}
         <div class="{% if not product.free_shipping %}js-free-shipping-minimum-label {% endif %}label label-accent" {% if not (product.free_shipping or product_price_above_free_shipping_minimum) %}style="display: none;"{% endif %}>{{ "Envío gratis" | translate }}</div>
-      {% endif %}
+      {% endif %} #}
     {% endif %}
   {% endif %}
 </div>

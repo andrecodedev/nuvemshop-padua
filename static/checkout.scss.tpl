@@ -98,7 +98,7 @@ a {
   text-decoration: none;
   &:hover, &:focus {
     color: darken($accent-brand-color, 20%);
-    
+
     svg {
       fill: darken($accent-brand-color, 20%);
     }
@@ -117,7 +117,7 @@ a {
 
 {# /* // Header */ #}
 
-.header { 
+.header {
   background-color: lighten($background-color, 10%);
   border-color: $accent-brand-color;
 }
@@ -197,7 +197,7 @@ a {
 
   &:focus {
     border-color: $accent-brand-color;
-    outline: none;    
+    outline: none;
   }
 }
 .form-options-content {
@@ -215,11 +215,11 @@ a {
 .form-group input[type="radio"]:checked + .form-options-content {
   border: 1px solid $accent-brand-color;
   border-color: darken($background-color, 10%);
-  
+
   + .form-options-accordion {
     border-color: darken($background-color, 10%);
   }
-  
+
   .checked {
     fill: $accent-brand-color;
   }
@@ -229,7 +229,7 @@ a {
 }
 .form-group input[disabled] + .form-options-content {
   border-color: darken($background-color, 10%) !important;
-  
+
   .form-options-label {
     color: $foreground-color !important;
   }
@@ -304,7 +304,7 @@ a {
 
   &:hover {
     color: $accent-brand-color;
-    
+
     .btn-icon-right {
       fill: $accent-brand-color;
     }
@@ -379,7 +379,7 @@ a {
   background-color: $background-color;
   border-radius: $box-radius;
   box-shadow: 0 1px 3px -1px rgba($foreground-color,0.04);
-  border-color: rgba($foreground-color, .15); 
+  border-color: rgba($foreground-color, .15);
 }
 
 .accordion-section-header-icon {
@@ -396,7 +396,7 @@ a {
   border-radius: $box-radius;
   border-color: darken($background-color, 10%);
   color: lighten($foreground-color, 20%);
-  
+
   .icon {
     color: lighten($foreground-color, 20%);
   }
@@ -693,7 +693,7 @@ a {
   }
 }
 
-.shipping-options-ship, 
+.shipping-options-ship,
 .shipping-options-pickup {
   border-radius: $box-radius;
   box-shadow: 0 1px 3px -1px rgba($foreground-color,0.04);
@@ -799,7 +799,7 @@ a {
 }
 .history-item-progress-icon svg {
   @if lightness($background-color) > 50% {
-    fill: darken($background-color, 10%);  
+    fill: darken($background-color, 10%);
   } @else {
     fill: $background-color;
   }
@@ -828,7 +828,7 @@ a {
 .history-canceled {
   border-top-right-radius: $box-radius;
   border-top-left-radius: $box-radius;
-  
+
   &-round {
     border-bottom-right-radius: $box-radius;
     border-bottom-left-radius: $box-radius;
@@ -853,7 +853,7 @@ a {
 {# /* // Status */ #}
 
 .status {
-  border: 1px solid rgba($foreground-color, .1); 
+  border: 1px solid rgba($foreground-color, .1);
   box-shadow: 0 1px 3px -1px rgba($foreground-color,0.04);
   padding: 25px 0;
   &-icon svg {
@@ -869,7 +869,7 @@ a {
 
 {# /* // WhatsApp Opt-in */ #}
 
-.whatsapp-form input, 
+.whatsapp-form input,
 .whatsapp-form .input-group-addon {
   border-color: $accent-brand-color;
 }
@@ -990,7 +990,7 @@ a {
 .round-spinner {
   border-color: $accent-brand-color;
   border-left-color: darken($accent-brand-color, 5%);
-  
+
   &:after {
     border-color: $accent-brand-color;
     border-left-color: darken($accent-brand-color, 5%);
@@ -1008,8 +1008,8 @@ a {
 {# /* // Sign Up */ #}
 
 .signup {
-  border: 1px solid rgba($foreground-color, .1); 
-  box-shadow: 0 1px 3px -1px rgba($foreground-color,0.04); 
+  border: 1px solid rgba($foreground-color, .1);
+  box-shadow: 0 1px 3px -1px rgba($foreground-color,0.04);
   padding: 25px 0;
   &-icon svg {
     fill: $accent-brand-color;
@@ -1196,5 +1196,6 @@ a {
   }
 
 }
+
 
 {% endif %}

@@ -3,7 +3,7 @@
 ==============================================================================*/#}
 
 {#/*============================================================================
-  
+
     Table of Contents
 
     #Lazy load
@@ -45,7 +45,7 @@
         // Add to cart
         // Product quantity
     #Cart
-        // Free shipping bar 
+        // Free shipping bar
         // Add to cart
         // Cart quantitiy changes
         // Empty cart alert
@@ -110,9 +110,9 @@ $(document).ready(function(){
     var $notification_status_page = $(".js-notification-status-page");
     var $quick_login_notification = $(".js-notification-quick-login");
     var $fixed_bottom_button = $(".js-btn-fixed-bottom");
-    
+
 	{# /* // Follow order status notification */ #}
-    
+
     if ($notification_status_page.size() > 0){
         if (LS.shouldShowOrderStatusNotification($notification_status_page.data('url'))){
             $notification_status_page.show();
@@ -141,9 +141,9 @@ $(document).ready(function(){
         var logoBarHeight = $(".js-nav-logo-bar").outerHeight();
         var searchBarHeight = $(".js-search-container").outerHeight();
         if ($(window).width() > 768) {
-            var fixedNotificationPosition = topBarHeight + logoBarHeight; 
+            var fixedNotificationPosition = topBarHeight + logoBarHeight;
         }else{
-            var fixedNotificationPosition = logoBarHeight - searchBarHeight; 
+            var fixedNotificationPosition = logoBarHeight - searchBarHeight;
         }
         var $addedToCartNotification = $(".js-alert-added-to-cart");
         var $addedToCartNotificationArrow = $addedToCartNotification.find(".js-cart-notification-arrow-up");
@@ -181,7 +181,7 @@ $(document).ready(function(){
                 {% endif %}
                 return;
             }
-            
+
         },500);
 
     {% endif %}
@@ -229,7 +229,7 @@ $(document).ready(function(){
             $(".js-notification-cookie-banner").show();
 
             {# Offset to show legal footer #}
-                
+
             const cookieBannerHeight = $(".js-notification-cookie-banner").outerHeight();
             footerLegal.css("padding-bottom", cookieBannerHeight + 20 + "px");
 
@@ -280,7 +280,7 @@ $(document).ready(function(){
 
         $(document).on("click", ".js-fullscreen-modal-open", function(e) {
             e.preventDefault();
-            var modal_url_hash = $(this).data("modal-url");            
+            var modal_url_hash = $(this).data("modal-url");
             window.location.hash = modal_url_hash;
         });
 
@@ -310,22 +310,22 @@ $(document).ready(function(){
 
                     $opened_modal.removeClass("modal-show").delay(500).hide(0);
                     $opened_modal_overlay.fadeOut(500);
-                    
+
                 }
             }
         }
 
     }
-    
+
     $(document).on("click", ".js-modal-open", function(e) {
-        e.preventDefault(); 
+        e.preventDefault();
         var modal_id = $(this).data('toggle');
         var $overlay_id = $('.js-modal-overlay[data-modal-id="' + modal_id + '"]');
         if ($(modal_id).hasClass("modal-show")) {
             $(modal_id).removeClass("modal-show").delay(500).hide(0);
         } else {
             {# Lock body scroll if there is no modal visible on screen #}
-            
+
             if(!$(".js-modal.modal-show").length){
                 $("body").addClass("overflow-none");
             }
@@ -333,11 +333,11 @@ $(document).ready(function(){
             $(modal_id).detach().appendTo("body");
             $overlay_id.detach().insertBefore(modal_id);
             $(modal_id).show(0).addClass("modal-show");
-        }             
+        }
     });
 
     $(document).on("click", ".js-modal-close", function(e) {
-        e.preventDefault();  
+        e.preventDefault();
 
         {# Remove body lock only if a single modal is visible on screen #}
 
@@ -347,9 +347,9 @@ $(document).ready(function(){
         var $modal = $(this).closest(".js-modal");
         var modal_id = $modal.attr('id');
         var $overlay_id = $('.js-modal-overlay[data-modal-id="#' + modal_id + '"]');
-        $modal.removeClass("modal-show").delay(500).hide(0); 
+        $modal.removeClass("modal-show").delay(500).hide(0);
         $overlay_id.fadeOut(500);
-        
+
         {# Close full screen modal: Remove url hash #}
 
         if (($(window).width() < 768) && ($(this).hasClass(".js-fullscreen-modal-close"))) {
@@ -367,7 +367,7 @@ $(document).ready(function(){
         }
 
         var modal_id = $(this).data('modal-id');
-        $(modal_id).removeClass("modal-show").delay(500).hide(0);   
+        $(modal_id).removeClass("modal-show").delay(500).hide(0);
         $(this).fadeOut(500);
     });
 
@@ -401,8 +401,8 @@ $(document).ready(function(){
             $("#home-modal").detach().appendTo("body").show(0).addClass("modal-show");
         }
         var callback_hide = function(){
-            $('.js-modal-overlay[data-modal-id="#home-modal"]').fadeOut(500); 
-            $("#home-modal").removeClass("modal-show").delay(500).hide(0); 
+            $('.js-modal-overlay[data-modal-id="#home-modal"]').fadeOut(500);
+            $("#home-modal").removeClass("modal-show").delay(500).hide(0);
         }
         LS.homePopup({
             selector: "#home-modal",
@@ -441,10 +441,10 @@ $(document).ready(function(){
     {# /* // Header */ #}
 
         {% if template == 'home' and settings.head_transparent %}
-            {% if settings.slider and settings.slider is not empty %}        
+            {% if settings.slider and settings.slider is not empty %}
 
                 var $swiper_height = $(window).height() - 100;
-                
+
                 $(document).scroll(function() {
                     if ($(document).scrollTop() > $swiper_height ) {
                         $(".js-head-main").removeClass("head-transparent");
@@ -463,7 +463,7 @@ $(document).ready(function(){
             // Get nav height on load
             if ($(window).width() > 768) {
                 var head_height = $(".js-head-main").height();
-                $(selector).css("padding-top", head_height); 
+                $(selector).css("padding-top", head_height);
             }else{
 
                 {# On mobile there is no top padding due to position sticky CSS #}
@@ -471,7 +471,7 @@ $(document).ready(function(){
             }
 
             // Apply offset nav height on load
-            
+
             $(window).resize(function() {
 
                 // Get nav height on resize
@@ -515,8 +515,8 @@ $(document).ready(function(){
                 }
             }
         });
-            
-    {% endif %}      
+
+    {% endif %}
 
 
     {# /* // Utilities */ #}
@@ -632,7 +632,7 @@ $(document).ready(function(){
         {# /* // Youtube video with autoplay */ #}
 
         function loadVideoFrame() {
-            window.youtubeIframeService.executeOnReady(() => { 
+            window.youtubeIframeService.executeOnReady(() => {
                 new YT.Player('player', {
                         width: '100%',
                         videoId: '{{video_id}}',
@@ -645,12 +645,12 @@ $(document).ready(function(){
                 );
             });
         };
-        
+
         document.querySelectorAll('.js-home-video').forEach(video => {
             let id_video = video.getAttribute('data-video-id');
             loadVideoFrame(id_video);
         })
-        
+
 
         function onPlayerReady(event) {
             event.target.mute();
@@ -782,7 +782,7 @@ $(document).ready(function(){
                     centerInsufficientSlides: centerInsufficientSlidesVal,
                     watchSlideProgress: true,
                     watchSlidesVisibility: true,
-                    slideVisibleClass: 'js-swiper-slide-visible',                
+                    slideVisibleClass: 'js-swiper-slide-visible',
                     navigation: {
                         nextEl: '.js-swiper-new-next',
                         prevEl: '.js-swiper-new-prev',
@@ -1316,7 +1316,7 @@ $(document).ready(function(){
 
 	        parent.find('.js-price-display').text(variant.price_short).show();
 	        parent.find('.js-price-display').attr("content", variant.price_number).data('product-price', variant_price_raw);
-            
+
             parent.find('.js-payment-discount-price-product').text(variant.price_with_payment_discount_short);
             parent.find('.js-payment-discount-price-product-container').show();
 	    } else {
@@ -1626,7 +1626,7 @@ $(document).ready(function(){
 	==============================================================================*/ #}
 
     {# /* // Free shipping bar */ #}
-    
+
     {% if cart.free_shipping.min_price_free_shipping.min_price %}
 
         {# Updates free progress on page load #}
@@ -1652,7 +1652,7 @@ $(document).ready(function(){
 
     function getQuickShopImgSrc(element){
         const image = $(element).closest('.js-quickshop-container').find('img');
-        return String(image.attr('srcset')); 
+        return String(image.attr('srcset'));
     }
 
 	$(document).on("click", ".js-addtocart:not(.js-addtocart-placeholder)", function (e) {

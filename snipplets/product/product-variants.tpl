@@ -6,7 +6,7 @@
 	{% for variation in product.variations %}
 
 		<div class="js-product-variants-group col-12 {% if variation.name in ['Color', 'Cor'] %}js-color-variants-container{% endif %} {% if quickshop %}row {% else %} col-12 {% if true %}mb-2{% else %}{% if loop.length == 3 %} col-md-4 {% else %} col-md-6{% endif %}{% endif %}{% endif %}" data-variation-id="{{ variation.id }}">
-			
+
 
 			{% if quickshop %}
 				{% embed "snipplets/forms/form-select.tpl" with{select_label: true, select_label_name: '' ~ variation.name ~ '', select_for: 'variation_' ~ loop.index , select_id: 'variation_' ~ loop.index, select_name: 'variation' ~ '[' ~ variation.id ~ ']', select_group_custom_class: 'form-group-small mb-2' ~ hidden_variant_select, select_custom_class: 'js-variation-option js-refresh-installment-data form-control-small', select_label_custom_class:'mb-1'} %}
@@ -25,9 +25,9 @@
 					{% endblock select_options%}
 				{% endembed %}
 			{% endif %}
-			
+
 			{% if variation.name in ['Color', 'Cor'] and is_item %}
-				
+
 			{% else %}
 				{% if true %}
 					<div class="row px-2">
@@ -71,7 +71,6 @@
 			{% set has_size_guide_page_finded = true %}
 			{% if has_size_guide_page_finded %}
 				<a data-toggle="#size-guide-modal" data-modal-url="modal-fullscreen-size-guide" class="js-modal-open js-fullscreen-modal-open btn-link font-small col-12 mb-3">
-					<svg class="icon-inline icon-lg svg-icon-text mr-1"><use xlink:href="#ruller"/></svg>
 					{{ 'Guía de talles' | translate }}
 				</a>
 				{% embed "snipplets/modal.tpl" with{modal_id: 'size-guide-modal',modal_class: 'bottom-md', modal_position: 'right', modal_transition: 'slide', modal_header_title: true, modal_footer: true, modal_width: 'centered', modal_mobile_full_screen: 'true'} %}

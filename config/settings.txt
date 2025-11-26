@@ -192,9 +192,6 @@ Página de inicio
 	checkbox
 		name = slider_full
 		description = Extender al ancho de la pantalla
-	checkbox
-		name = slider_viewport_height
-		description = Usar el mismo alto para todas las imágenes
 	subtitle
 		subtitle = Imágenes para computadoras
 	gallery

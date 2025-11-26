@@ -1,22 +1,3 @@
-body {
-    main,
-    footer,
-    header,
-    div,
-    button,
-    a,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    span,
-    * {
-        border-radius: 0 !important;
-    }
-}
 header {
     .section-topbar {
         background-color: #000;
@@ -55,9 +36,11 @@ header {
         }
 
         .nav-item-desktop {
-            max-width: 130px;
+            {# max-width: 130px; #}
             width: 100%;
             text-align: center;
+            flex-direction: column;
+            display: flex;
         }
         #logo {
             filter: revert;
@@ -70,9 +53,14 @@ header {
                 display: flex;
                 margin: auto;
                 justify-content: center;
-                margin-left: 30px;
-                margin-right: 30px;
+                {# margin-left: 30px;
+                margin-right: 30px; #}
             }
+
+            {# @media (max-width: 767px) {
+                margin-left: 0px;
+                margin-right: 60px;
+            } #}
         }
         ul.js-nav-desktop-list.nav-desktop-list {
             display: flex;
@@ -83,8 +71,8 @@ header {
         .desktop-dropdown {
             width: 100%;
             background-color: #fff;
-            display: flex;
-            justify-content: space-between;
+            {# display: flex;
+            justify-content: space-between; #}
 
             .nav-dropdown-image {
                 width: 40%;
@@ -128,7 +116,7 @@ header {
             ul {
                 background-color: #fff;
                 display: flex;
-                flex-direction: column;
+                {# flex-direction: column; #}
                 align-items: flex-start;
                 justify-content: center;
 
@@ -214,14 +202,15 @@ header {
         font-size: 12px;
         font-weight: 600;
         background: transparent;
-        border: 1px solid #0000001f;
-        border-radius: 0;
+        {# border: 1px solid #0000001f; #}
+        border-radius: 50%;
         padding: 10px 12px;
 
         &.selected {
-            border: 1px solid #000;
+            {# border: 1px solid #000; #}
             background-color: #000;
             color: #fff;
+            border-radius: 50%;
         }
     }
 
@@ -327,7 +316,7 @@ header {
 
     h2 {
         color: var(--Black, #000);
-        font-family: "DM Sans";
+        {# font-family: "DM Sans"; #}
         font-size: 20px;
         font-style: normal;
         font-weight: 500;
@@ -439,11 +428,11 @@ header {
             .slider-slide {
                 height: 0;
                 position: relative;
-                padding-bottom: 60.64%;
+                {# padding-bottom: 60.64%; #}
                 width: 100%;
 
                 img {
-                    position: absolute;
+                    {# position: absolute; #}
                     top: 0;
                     left: 0;
                     width: 100%;
@@ -674,7 +663,7 @@ header {
                 font-weight: 500;
                 line-height: normal;
                 text-transform: uppercase;
-                margin: 12px 0;
+                margin: 12px 0 15px 0;
             }
 
             .description {
@@ -977,11 +966,8 @@ header {
 }
 
 footer.footer-block {
-    background-color: #000;
-
-    * {
-        color: #fff;
-    }
+    background-color: var(--footer-background);
+    color: var(--footer-foreground);
 
     .footer-logo {
         p,
@@ -1009,9 +995,8 @@ footer.footer-block {
             .form-group {
                 input {
                     border-radius: 0;
-                    border: 1px solid rgba(255, 255, 255, 0.12);
+                    {# border: 1px solid rgba(255, 255, 255, 0.12); #}
                     background: transparent;
-                    color: #fff;
                     padding: 10px 15px;
 
                     &::placeholder {
@@ -1196,6 +1181,10 @@ footer.footer-block {
     padding: 64px;
     background: var(--Gray, #ece9e6);
     margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     > h2 {
         overflow: hidden;

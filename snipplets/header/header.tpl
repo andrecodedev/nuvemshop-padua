@@ -19,7 +19,8 @@
     {% if show_topbar %}
         <section class="js-topbar section-topbar {% if not has_ad_bar %}d-none d-md-block{% endif %}">
             <div class="container-fluid">
-                <div class="row">
+                {# CORREÇÃO 1: Adicionado no-gutters para evitar scroll horizontal na barra superior #}
+                <div class="row no-gutters align-items-center">
                     <div class="col text-left d-none d-md-block">
                         {# {% include "snipplets/social/social-links.tpl" %} #}
                     </div>
@@ -34,7 +35,9 @@
         </section>
     {% endif %}
 	<div class="header-content container-fluid {% if settings.head_utility == 'searchbox' %}pb-3 pb-md-0{% endif %}">
-		<div class="{% if not settings.head_fix %}js-nav-logo-bar{% endif %} row no-gutters align-items-center justify-content-evenly">
+
+        {# CORREÇÃO 2: Mantido no-gutters e justify-content-between #}
+		<div class="{% if not settings.head_fix %}js-nav-logo-bar{% endif %} row no-gutters align-items-center justify-content-between">
 
             {# Menu icon for all mobile combinations except when categories are exposed and logo is centered #}
             {% if settings.head_utility == 'searchbox' or settings.head_utility == 'icons' or (settings.logo_position_mobile == 'left' and settings.head_utility == 'categories') %}
@@ -90,7 +93,7 @@
 
             {# Utility icons: Help, Account and Cart (also used on mobile) #}
 
-			<div class="col-2 order-md-3">
+			<div class="col-2 order-md-3 text-right">
                 {% snipplet "header/header-utilities.tpl" %}
                 {% if settings.head_fix and settings.ajax_cart %}
                     <div class="d-none d-md-block">
@@ -113,7 +116,8 @@
         {% endif %}
 
         {# Mobile row for exposed categories #}
-        <div class="row align-items-center nav-row ">
+        {# CORREÇÃO 3: Adicionado no-gutters aqui também #}
+        <div class="row align-items-center nav-row no-gutters">
             {% if settings.head_utility == 'categories' %}
 
                 {# Menu icon inline with categories when when categories are exposed and logo is centered #}

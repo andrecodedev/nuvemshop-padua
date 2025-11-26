@@ -152,9 +152,9 @@
 
     {# GUIA DE MEDIAS #}
 
-    <button id="btn-size-guide" class="ml-auto mb-3" style="border:none;outline: none;background: transparent;overflow: hidden;color: #000;text-align: right;text-overflow: ellipsis;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;text-decoration-line: underline;text-transform: uppercase;">
+    {# <button id="btn-size-guide" class="ml-auto mb-3" style="border:none;outline: none;background: transparent;overflow: hidden;color: #000;text-align: right;text-overflow: ellipsis;font-size: 10px;font-style: normal;font-weight: 400;line-height: normal;text-decoration-line: underline;text-transform: uppercase;">
         GUIA DE TAMANHOS
-    </button>
+    </button> #}
 
     <div class="form-row mb-2">
         {% if show_product_quantity %}
@@ -212,7 +212,7 @@
 
     {# Define contitions to show shipping calculator and store branches on product page #}
 
-    {% set show_product_fulfillment = settings.shipping_calculator_product_page and (store.has_shipping or store.branches) and not product.free_shipping and not product.is_non_shippable %}
+    {% set show_product_fulfillment = settings.shipping_calculator_product_page and (store.has_shipping or store.branches) and not product.free_shipping and not product.is_non_shippable and not cart.free_shipping.cart_has_free_shipping %}
 
     {% if show_product_fulfillment %}
 
@@ -231,21 +231,22 @@
         </div>
     {% endif %}
 
+    {# ================================================================= #}
+    {# MOVIDO: SOBRE A PEÇA (Acordeões) AGORA ESTÁ ACIMA DOS BANNERS   #}
+    {# ================================================================= #}
 
-    {# Product informative banners #}
+    {% if product.description is not empty and '<table' in product.description %}
+        <div class="product-description mb-4">
+            <div class="d-none">{{ product.description }}</div>
+            <div id="collapsible-container"></div>
+        </div>
+    {% endif %}
+
+    {# Product informative banners (Compra protegida / Trocas e devoluções) #}
 
     {% include 'snipplets/product/product-informative-banner.tpl' %}
 </form>
 
-{% if product.description is not empty and '<table' in product.description %}
-    <div class="product-description">
-        <div class="d-none">{{ product.description }}</div>
-
-        <div id="collapsible-container"></div>
-    </div>
-{% endif %}
-
 {# Product payments details #}
-
-{# {% include 'snipplets/product/product-payment-details.tpl' %} #}
-
+{# CORREÇÃO AQUI: Descomentei esta linha para que o modal de pagamentos funcione #}
+{% include 'snipplets/product/product-payment-details.tpl' %}

@@ -1142,12 +1142,11 @@ input::-webkit-outer-spin-button{
 
 .section-newsletter-home {
   padding: 70px 0;
-  background: $primary-color;
-  color: $main-background;
+  {# background: $primary-color;
+  color: $main-background; #}
 }
 
 .newsletter .form-control{
-  border: 0;
   color: $primary-color;
   &::-webkit-input-placeholder {
     color: $primary-color;
@@ -1644,17 +1643,14 @@ input::-webkit-outer-spin-button{
   $footer-legal-foreground-color: $main-background;
 {% endif %}
 
-footer {
+{# footer {
   color: $footer-foreground-color;
   background: $footer-background-color;
   a,
   .contact-link {
     color: $footer-foreground-color;
   }
-  .contact-item-icon {
-    fill: $footer-foreground-color;
-  }
-}
+} #}
 
 .social-icon-rounded {
   background: $footer-foreground-color;

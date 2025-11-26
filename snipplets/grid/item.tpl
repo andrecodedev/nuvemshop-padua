@@ -40,7 +40,7 @@
             <div class="{% if show_secondary_image %}js-item-with-secondary-image{% endif %} item-image{% if columns == 1 %} item-image-big{% endif %}">
                 <div style="padding-bottom: 149.73%;" class="position-relative item-image" data-store="product-item-image-{{ product.id }}">
                     <a href="{{ product_url_with_selected_variant }}" title="{{ product.name }}" aria-label="{{ product.name }}" >
-                        <img alt="{{ item_img_alt }}" data-expand="-10" src="{{ empty_placeholder_image }}" data-srcset="{{ item_img_srcset | product_image_url('small')}} 240w, {{ item_img_srcset | product_image_url('medium')}} 320w, {{ item_img_srcset | product_image_url('large')}} 480w" class="js-item-image lazyautosizes lazyload img-absolute img-absolute-centered fade-in {% if show_secondary_image %}item-image-primary{% endif %}" width="{{ item_img_width }}" height="{{ item_img_height }}" /> 
+                        <img alt="{{ item_img_alt }}" data-expand="-10" src="{{ empty_placeholder_image }}" data-srcset="{{ item_img_srcset | product_image_url('small')}} 240w, {{ item_img_srcset | product_image_url('medium')}} 320w, {{ item_img_srcset | product_image_url('large')}} 480w" class="js-item-image lazyautosizes lazyload img-absolute img-absolute-centered fade-in {% if show_secondary_image %}item-image-primary{% endif %}" width="{{ item_img_width }}" height="{{ item_img_height }}" />
                         <div class="placeholder-fade">
                         </div>
 
@@ -49,7 +49,7 @@
                             <img alt="{{ item_img_alt }}" data-sizes="auto" src="{{ empty_placeholder_image }}" data-srcset="{{ secondary_image | product_image_url('small')}} 240w, {{ secondary_image | product_image_url('medium')}} 320w, {{ secondary_image | product_image_url('large')}} 480w" class="js-item-image js-item-image-secondary lazyautosizes lazyload img-absolute img-absolute-centered fade-in item-image-secondary" style="display:none;" />
                         {% endif %}
                     </a>
-                    
+
                     <div class='product-flags'>
                         {% for item in product.tags %}
                             {% if item matches '/^flag:cor:/' %}
@@ -60,7 +60,7 @@
                                     {{ text }}
                                 </span>
                             {% endif %}
-                            
+
                         {% endfor %}
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                 {% if (settings.quick_shop or settings.product_color_variants) and product.available and product.display_price and product.variations %}
                     <div class="item-buy{% if settings.product_color_variants and not settings.quick_shop %} hidden{% endif %}">
                         <div class="js-item-variants item-buy-variants{% if settings.theme_rounded %} px-1 py-2 p-md-3{% endif %}">
-                            
+
                                 <input type="hidden" name="add_to_cart" value="{{product.id}}" />
                                 {% if product.variations %}
                                     {% include "snipplets/product/product-variants.tpl" with {quickshop: true, is_item: true} %}
@@ -87,10 +87,10 @@
                                 {# Fake add to cart CTA visible during add to cart event #}
 
                                 {% include 'snipplets/placeholders/button-placeholder.tpl' with {custom_class: "btn-small w-100 mb-2"} %}
-                                {# 
+                                {#
                                 <a href="#" class="js-item-buy-close">
                                     <svg class="icon-inline icon-lg svg-circle svg-icon-text"><use xlink:href="#times"/></svg>
-                                </a> 
+                                </a>
                                 #}
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                                             {{ text }}
                                         </span>
                                     {% endif %}
-                                    
+
                                 {% endfor %}
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                         visibility_condition: settings.payment_discount_price,
                         location: 'product',
                         container_classes: discount_price_spacing_classes ~ " font-small font-md-normal text-accent font-weight-bold",
-                    }) 
+                    })
                 }}
 
                 {% if product_can_show_installments %}

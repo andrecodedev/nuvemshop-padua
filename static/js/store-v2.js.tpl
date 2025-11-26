@@ -487,7 +487,7 @@ DOMContentLoaded.addEventOrExecute(() => {
                 head_height = jQueryNuvem(".js-head-main").height();
             } else {
                 // On mobile we want a fixed spacing so the home slider doesn't overlap the header
-                head_height = 150; // 150px on smaller screens
+                head_height = 97; // 97px on smaller screens
             }
 
             // Apply paddingTop on load so content appears below fixed header
@@ -505,7 +505,7 @@ DOMContentLoaded.addEventOrExecute(() => {
                 }else{
 
                     // On mobile we use the fixed 150px spacing
-                    jQueryNuvem(selector).css("paddingTop", '150px');
+                    jQueryNuvem(selector).css("paddingTop", '97px');
                 }
             });
         }
@@ -523,9 +523,9 @@ DOMContentLoaded.addEventOrExecute(() => {
                 var selector = '.block-category-topo';
                 function setCategoryTopoPadding(){
                     if (window.innerWidth > 768) {
-                        jQueryNuvem(selector).css('paddingTop', '67px').css('marginTop', '0px');
+                        jQueryNuvem(selector).css('paddingTop', '116px').css('marginTop', '0px');
                     } else {
-                        jQueryNuvem(selector).css('paddingTop', '123px').css('marginTop', '0px');
+                        jQueryNuvem(selector).css('paddingTop', '74px').css('marginTop', '0px');
                     }
                 }
                 setCategoryTopoPadding();
@@ -852,14 +852,15 @@ DOMContentLoaded.addEventOrExecute(() => {
 
 	{% endif %}
 
-    {% if template == 'product' %}
+{% if template == 'product' %}
         {# /* // DESCRIPTION */ #}
-
 
         const productDescription = document.querySelector('.product-description');
 
         if (productDescription) {
-            const descriptionHTML = productDescription.querySelector('.d-none').innerHTML;
+            // Pega o conteúdo oculto da descrição
+            const hiddenDiv = productDescription.querySelector('.d-none');
+            const descriptionHTML = hiddenDiv ? hiddenDiv.innerHTML : '';
 
             // Encontra a posição da tabela
             const tableStartIndex = descriptionHTML.indexOf('<table');
@@ -871,7 +872,7 @@ DOMContentLoaded.addEventOrExecute(() => {
                 const collapsibleContainer = productDescription.querySelector('#collapsible-container');
 
                 // Exibe o conteúdo antes da tabela, se existir
-                if (contentBeforeTable) {
+                if (contentBeforeTable && collapsibleContainer) {
                     const contentDiv = document.createElement('div');
                     contentDiv.classList.add('content-before-table');
                     contentDiv.innerHTML = contentBeforeTable;
@@ -892,7 +893,10 @@ DOMContentLoaded.addEventOrExecute(() => {
                             document.querySelectorAll('.collapse-content').forEach(content => {
                                 content.classList.remove('show');
                                 content.setAttribute('aria-hidden', 'true');
-                                content.previousElementSibling.setAttribute('aria-expanded', 'false');
+                                // A correção do previousElementSibling depende da estrutura exata, melhor usar o ID
+                                const controlledId = content.id;
+                                const button = document.querySelector(`button[aria-controls="${controlledId}"]`);
+                                if(button) button.setAttribute('aria-expanded', 'false');
                             });
                         }
 
@@ -906,6 +910,11 @@ DOMContentLoaded.addEventOrExecute(() => {
                                 collapseSection.classList.add('collapse-section');
 
                                 const collapseTitle = document.createElement('button');
+
+                                // --- CORREÇÃO AQUI ---
+                                collapseTitle.setAttribute('type', 'button'); // Impede o envio do formulário de compra
+                                // ---------------------
+
                                 collapseTitle.classList.add('collapse-title');
                                 collapseTitle.setAttribute('role', 'button');
                                 collapseTitle.setAttribute('aria-expanded', 'false');
@@ -923,8 +932,12 @@ DOMContentLoaded.addEventOrExecute(() => {
                                 collapseSection.appendChild(collapseContent);
                                 collapsibleContainer.appendChild(collapseSection);
 
-                                collapseTitle.addEventListener('click', () => {
+                                collapseTitle.addEventListener('click', (e) => {
+                                    e.preventDefault(); // Garante que não faça nenhuma ação padrão extra
                                     const isVisible = collapseContent.classList.contains('show');
+
+                                    // Se quiser fechar os outros ao abrir um, mantenha essa linha.
+                                    // Se quiser permitir vários abertos, remova a linha abaixo.
                                     closeAllCollapses();
 
                                     if (!isVisible) {
@@ -936,18 +949,10 @@ DOMContentLoaded.addEventOrExecute(() => {
                             }
                         });
 
-                        table.remove(); // Remove a tabela após a criação das seções colapsáveis.
-                    } else {
-                        console.error('Erro: #collapsible-container não encontrado.');
+                        table.remove(); // Remove a tabela virtual temporária
                     }
-                } else {
-                    console.error('Erro: Tabela não encontrada em .product-description.');
                 }
-            } else {
-                console.error('Erro: Não foi encontrada nenhuma tabela na descrição.');
             }
-        } else {
-            console.error('Erro: .product-description não encontrada.');
         }
 
         {# /* // Product Related */ #}

@@ -6,10 +6,9 @@
 	{% set attention_head = store.whatsapp or store.phone or store.email %}
 	{% if attention_head %}
 
-		<div class="js-utilities-item nav-dropdown utilities-item transition-soft  {% if settings.icons_size_desktop == 'small' %}w-md-auto ml-md-4{% endif %}">
+		{# <div class="js-utilities-item nav-dropdown utilities-item transition-soft  {% if settings.icons_size_desktop == 'small' %}w-md-auto ml-md-4{% endif %}">
 			<div class="utility-head text-center">
 				<svg class="icon-inline icon-2x icon-w-20 utility-head text-center{{ icon_desktop_class }}"><use xlink:href="#chat"/></svg>
-				{# <span class="utility-name transition-soft d-none{% if settings.icons_solid %} font-weight-bold{% endif %} {% if settings.icons_size_desktop == 'small' %}d-md-inline-block pt-0 ml-1{% else %}d-md-block{% endif %}">{{ 'Ayuda' | translate }}</span> #}
 			</div>
 			<ul class="js-subutility-list nav-dropdown-content subutility-list">
 				{% if store.whatsapp %}
@@ -33,7 +32,7 @@
 					</li>
 				{% endif %}
 			</ul>
-		</div>
+		</div> #}
 	{% endif %}
 
 

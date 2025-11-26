@@ -6,7 +6,7 @@
 
 #Group
     //input_group_custom_class for custom CSS classes
-#Label 
+#Label
     // input_label_id for ID
     // input_for for label for
     // input_label_custom_class for custom CSS classes
@@ -15,21 +15,21 @@
     // input_prepend_content to add content before input
 #Container (Only if has prepend or append)
     // form_control_container_custom_class for container custom class. E.g: col
-#Input 
+#Input
     // Can be text_area or input
     // input_type to define type (text, tel, number or passowrd)
     // input_id for id
     // input_name for name
     // input_value for val
     // input_placeholder for placeholder
-    // input_custom_class for custom CSS classes 
+    // input_custom_class for custom CSS classes
     // input_rows for textarea rows
     // input_data_attr for data attributes
     // input_data_val for input_data_attr value
     // input_aria_label for aria-label attribute
 #Append
     // input_append_content to add content after input
-#Alerts 
+#Alerts
     // input_form_alert to insert alerts
 
 #}
@@ -46,21 +46,21 @@
     {% if text_area %}
         <textarea
             {% if input_id %}id="{{ input_id }}"{% endif %}
-            class="form-control form-control-area {{ input_custom_class }} {% if input_append_content %}form-control-inline{% endif %}" 
-            autocorrect="off" 
-            autocapitalize="off" 
+            class="form-control form-control-area {{ input_custom_class }} {% if input_append_content %}form-control-inline{% endif %}"
+            autocorrect="off"
+            autocapitalize="off"
             {% if input_name %}name="{{ input_name }}"{% endif %}
             {% if input_value %}value="{{ input_value }}"{% endif %}
             {% if input_rows %}rows="{{ input_rows }}"{% endif %}
             {% if input_placeholder %}placeholder="{{ input_placeholder }}"{% endif %}
             {% if input_data_attr %}data-{{ input_data_attr }}="{{ input_data_val }}"{% endif %}></textarea>
     {% else %}
-        <input 
+        <input
             type="{% if type_text %}text{% elseif type_number %}number{% elseif type_tel %}tel{% elseif type_password %}password{% elseif type_hidden %}hidden{% elseif type_email %}email{% endif %}"
             {% if input_id %}id="{{ input_id }}"{% endif %}
-            class="{% if type_password %}js-password-input{% endif %} form-control {{ input_custom_class }} {% if input_append_content %}form-control-inline{% endif %}" 
-            autocorrect="off" 
-            autocapitalize="off" 
+            class="{% if type_password %}js-password-input{% endif %} form-control {{ input_custom_class }} {% if input_append_content %}form-control-inline{% endif %}"
+            autocorrect="off"
+            autocapitalize="off"
             {% if type_password %}autocomplete="off"{% endif %}
             {% if type_number %}pattern="\d*"{% endif %}
             {% if input_name %}name="{{ input_name }}"{% endif %}
@@ -72,7 +72,7 @@
             {% if input_required %}required{% endif %}
             {% if data_component %}data-component="{{ data_component }}"{% endif %}
         />
-            {% if type_password %} 
+            {% if type_password %}
             <a aria-label="{{ 'Ver contraseña' | translate }}" class="js-password-view btn form-toggle-eye">
                 <span class="js-eye-open" style="display: none;">
                     <svg class="icon-inline svg-icon-primary icon-w-20"><use xlink:href="#eye"/></svg>
@@ -80,7 +80,7 @@
                 <span class="js-eye-closed">
                     <svg class="icon-inline svg-icon-primary icon-w-20"><use xlink:href="#eye-closed"/></svg>
                 </span>
-            </a>                        
+            </a>
             {% endif %}
     {% endif %}
     {% block input_add_on %}

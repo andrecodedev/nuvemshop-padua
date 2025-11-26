@@ -1048,6 +1048,8 @@ button{
     .list-subitems {
       padding: 0;
       margin: 0 0 35px 0;
+      display: flex;
+      flex-direction: column;
       .nav-item {
         .nav-list-link {
           font-weight: 400;
@@ -1239,7 +1241,7 @@ footer {
 
 .powered-by-logo {
   display: inline-block;
-  width: 125px;
+  width: 200px;
 }
 
 .copyright {
