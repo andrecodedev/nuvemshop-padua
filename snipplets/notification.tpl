@@ -38,9 +38,9 @@
                 <div class="col">
                     <svg class="icon-inline icon-lg svg-icon-invert mr-2"><use xlink:href="#heart"/></svg>
                     <span>
-                        {% set customer_short_name = customer.name|split(' ')|slice(0, 1)|join %} 
+                        {% set customer_short_name = customer.name|split(' ')|slice(0, 1)|join %}
                         {{ "<strong>¡Hola, {1}!</strong> Ya podés seguir con tu compra" | t(customer_short_name) }}
-                    </span> 
+                    </span>
                 </div>
                 <div class="col-auto">
                     <a class="js-notification-close mr-1" href="#">
@@ -74,12 +74,12 @@
             <div class="js-cart-notification-close notification-close mt-2 mr-2">
                 <svg class="icon-inline icon-2x icon-w-12 svg-icon-primary notification-icon"><use xlink:href="#times"/></svg>
             </div>
-            <div class="js-cart-notification-item row" data-store="cart-notification-item">
-                <div class="col-2 pr-0 notification-img">
+            <div class="js-cart-notification-item row align-items-start" data-store="cart-notification-item">
+                <div class="col-3 pr-0 notification-img">
                     <img src="" class="js-cart-notification-item-img img-fluid" />
                     <svg class="icon-inline icon-sm svg-icon-primary"><use xlink:href="#check-circle-filled"/></svg>
                 </div>
-                <div class="col-10 text-left">
+                <div class="col-9 text-left">
                     <div class="mb-1 mr-4">
                         <span class="js-cart-notification-item-name"></span>
                         <span class="js-cart-notification-item-variant-container" style="display: none;">
@@ -97,9 +97,9 @@
             <div class="divider my-3"></div>
             <div class="row text-primary h5 font-weight-normal mb-3">
                 <span class="col-auto text-left ml-2">
-                    <strong>{{ "Total" | translate }}</strong> 
+                    <strong>{{ "Total" | translate }}</strong>
                     (<span class="js-cart-widget-amount">
-                        {{ "{1}" | translate(cart.items_count ) }} 
+                        {{ "{1}" | translate(cart.items_count ) }}
                     </span>
                     <span class="js-cart-counts-plural" style="display: none;">
                         {{ 'productos' | translate }}):

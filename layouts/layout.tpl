@@ -53,7 +53,7 @@
         {# Load async styling not mandatory for first meaningfull paint #}
 
         <link rel="stylesheet" href="{{ 'css/style-async.scss.tpl' | static_url }}" media="print" onload="this.media='all'">
-        
+
         <link rel="stylesheet" href="{{ 'css/css-tec4u.scss.tpl' | static_url }}" media="print" onload="this.media='all'">
 
         {# Loads custom CSS added from Advanced Settings on the admin´s theme customization screen #}
@@ -186,6 +186,62 @@
                     {% include "static/js/store.js.tpl" %}
                 {% endif %}
             });
+
+
+            {# Script global para o collapse do calculador de frete funcionar em todas as páginas #}
+            function initShippingCollapse() {
+                const collapseButtons = document.querySelectorAll('.collapse-button');
+
+                if (collapseButtons.length > 0) {
+                    collapseButtons.forEach((button) => {
+                        // Verifica se já foi inicializado
+                        if (!button.hasAttribute('data-collapse-initialized')) {
+                            button.setAttribute('data-collapse-initialized', 'true');
+
+                            button.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+
+                                // Encontra o container pai e depois o conteúdo
+                                const parent = this.parentElement;
+                                const content = parent.querySelector('.collapse-content-shipping');
+
+                                if (content) {
+                                    if (content.style.display === "none" || content.style.display === "") {
+                                        content.style.display = "block";
+                                    } else {
+                                        content.style.display = "none";
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+
+            // Inicializa o collapse quando o DOM carregar
+            initShippingCollapse();
+
+            // Re-inicializa quando o modal do carrinho abrir
+            jQueryNuvem(document).on('click', '[data-toggle="#modal-cart"], .js-ajax-cart-link', function() {
+                setTimeout(initShippingCollapse, 600);
+            });
+
+            // Observer para detectar quando o conteúdo do carrinho é atualizado
+            if (typeof MutationObserver !== 'undefined') {
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.addedNodes.length) {
+                            setTimeout(initShippingCollapse, 100);
+                        }
+                    });
+                });
+
+                const cartContainer = document.querySelector('.js-ajax-cart-list, #modal-cart');
+                if (cartContainer) {
+                    observer.observe(cartContainer, { childList: true, subtree: true });
+                }
+            }
         </script>
 
         {# Google reCAPTCHA on register page #}
@@ -210,7 +266,7 @@
         {{ component('assorted-js', {}) }}
 
         <!-- Botão flutuante do WhatsApp -->
-        {% if settings.whatsapp_float %}    
+        {% if settings.whatsapp_float %}
             <a href="{{ settings.whatsapp_link }}" target="_blank" class="whatsapp-float">
                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="60" height="60" rx="30" fill="black"/>

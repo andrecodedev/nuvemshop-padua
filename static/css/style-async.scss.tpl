@@ -522,11 +522,7 @@ button{
   @include prefix(transform, translate(0, 0), webkit ms moz o);
 }
 .notification-floating {
-  {% if settings.head_utility == 'searchbox' %}
-    margin-top: -60px;
-  {% else %}
-    margin-top: -15px;
-  {% endif %}
+  margin-top: -15px;
 }
 .notification-arrow-up{
   position: absolute;
@@ -536,10 +532,22 @@ button{
   height: 0;
   pointer-events: none;
 }
-.notification-img svg{
-  position: absolute;
-  top: -4px;
-  right: -2px;
+.notification-img {
+  position: relative;
+  min-width: 100px;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  svg{
+    position: absolute;
+    top: -4px;
+    right: -2px;
+  }
 }
 .notification-close {
   position: absolute;
@@ -1035,21 +1043,19 @@ button{
 .desktop-list-subitems {
   padding: 15px 25px 25px 25px;
   text-align: left;
+  display: grid;
 
   .nav-item {
     display: block;
     margin: 0;
     padding: 0;
-    -webkit-column-break-inside: avoid;
-    break-inside: avoid;
+
     .nav-list-link {
       font-weight: 700;
     }
     .list-subitems {
       padding: 0;
-      margin: 0 0 35px 0;
-      display: flex;
-      flex-direction: column;
+      margin: 0 0 20px 0;
       .nav-item {
         .nav-list-link {
           font-weight: 400;
@@ -1057,10 +1063,10 @@ button{
         .list-subitems {
           margin: 0 0 0 8px;
           .nav-list-link {
-            padding: 0px 0 0 10px;
+            padding: 5px 0 5px 10px;
             border-left-width: 1px;
             border-left-style: solid;
-            line-height: 15px;
+            line-height: 18px;
             font-size: 12px;
           }
         }
@@ -1069,7 +1075,7 @@ button{
   }
   .nav-list-link {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     line-height: 20px;
   }
 }
@@ -1693,7 +1699,7 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
     right: 15px;
     width: 32px;
     height: 32px;
-    padding: 0 9px;
+    padding: 0 16px;
     margin-right: 0;
     line-height: 30px;
     vertical-align: middle;

@@ -3,9 +3,9 @@
 {% set has_free_shipping = cart.free_shipping.cart_has_free_shipping or cart.free_shipping.min_price_free_shipping.min_price %}
 
 {% if has_free_shipping and cart.free_shipping.min_price_free_shipping.min_price_raw > 0 %}
-  
+
   {# includes free shipping progress bar: only if store has free shipping with a minimum #}
-  
+
   {% include "snipplets/shipping/shipping-free-rest.tpl" %}
 {% endif %}
 
@@ -29,7 +29,7 @@
   <h5 class="js-visible-on-cart-filled row mb-1" style="display:none;" data-store="cart-subtotal">
     <span {% if not cart_page %}class="col-7"{% endif %}>
       {{ "Subtotal" | translate }}
-      
+
       <small class="js-subtotal-shipping-wording" {% if not (cart.has_shippable_products or show_calculator_on_cart) %}style="display: none"{% endif %}>{{ " (sin envío)" | translate }}</small>
       :
     </span>
@@ -82,9 +82,9 @@
       <div class="col-12 col-md-4">
     {% endif %}
     {% if show_cart_fulfillment %}
-      
+
       <div class="js-fulfillment-info js-allows-non-shippable" {% if not cart.has_shippable_products %}style="display: none"{% endif %}>
-      
+
         {% if not cart_page %}
           <div class="js-visible-on-cart-filled " {% if cart.items_count == 0 %}style="display:none;"{% endif %}></div>
         {% endif %}
@@ -99,7 +99,7 @@
 
             {# Shipping calculator and branch link #}
 
-            <div id="cart-shipping-container" class="row"  style="display: none;" data-shipping-url="{{ store.shipping_calculator_url }}">
+            <div id="cart-shipping-container" class="row" data-shipping-url="{{ store.shipping_calculator_url }}">
 
               {# Used to save shipping #}
 
@@ -211,13 +211,13 @@
                 <div class='total-price hidden'>
                   {{ "Total" | translate }}: {{ cart.total | money }}
                 </div>
-                
+
                 <div class="text-right">
                   {{ component('payment-discount-price', {
                       visibility_condition: settings.payment_discount_price,
                       location: 'cart',
                       container_classes: 'text-accent font-weight-bold mt-1',
-                    }) 
+                    })
                   }}
                   {% if not settings.payment_discount_price %}
                     {{ component('installments', {'location': 'cart', container_classes: { installment: 'text-accent font-small font-weight-bold mt-1'}}) }}
@@ -235,7 +235,7 @@
                 <div>
 
                   {# Cart page and popup CTA Module #}
-                  
+
                   {% set cart_total = (settings.cart_minimum_value * 100) %}
 
                   {% if cart_page %}

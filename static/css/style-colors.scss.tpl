@@ -1342,7 +1342,7 @@ input::-webkit-outer-spin-button{
 {# /* // Header */ #}
 
 .head-light{
-  color: $primary-color;
+  color: var(black);
   fill: $primary-color;
   background-color: $main-background;
   @extend %simplefade;
@@ -1353,7 +1353,7 @@ input::-webkit-outer-spin-button{
   }
 
   .badge {
-    color: $main-background;
+    color: #000;
     background: transparent;
   }
 

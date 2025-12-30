@@ -96,19 +96,56 @@ DOMContentLoaded.addEventOrExecute(() => {
 	{#/*============================================================================
 	  #Notifications and tooltips
 	==============================================================================*/ #}
+
+    // Campo de busca - toggle abaixo do header
     const openSearchBtn = document.querySelector('.js-modal-open-search');
     const blockSearch = document.querySelector('.block-search');
+    const closeSearchBtn = document.querySelector('.js-search-close');
+    const searchInput = document.querySelector('.js-search-input');
 
-    openSearchBtn.addEventListener('click', (e) => {
-         e.stopPropagation(); // Impede que o clique propague para o document
-        blockSearch.classList.toggle('active');
+    if (openSearchBtn && blockSearch) {
+        openSearchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Toggle: se está aberto, fecha; se está fechado, abre
+            if (blockSearch.classList.contains('active')) {
+                blockSearch.classList.remove('active');
+            } else {
+                blockSearch.classList.add('active');
+                // Focus no input após abrir
+                setTimeout(() => {
+                    if (searchInput) searchInput.focus();
+                }, 300);
+            }
+        });
+    }
+
+    if (closeSearchBtn && blockSearch) {
+        closeSearchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            blockSearch.classList.remove('active');
+        });
+    }
+
+    // Fechar ao clicar fora do campo de busca
+    document.addEventListener('click', (e) => {
+        if (blockSearch && blockSearch.classList.contains('active')) {
+            // Se clicou fora do .block-search e não é o botão de abrir
+            if (!blockSearch.contains(e.target) && !openSearchBtn.contains(e.target)) {
+                blockSearch.classList.remove('active');
+            }
+        }
     });
 
-    document.addEventListener('click', (e) => {
-        if (!blockSearch.contains(e.target) && !openSearchBtn.contains(e.target)) {
+    // Fechar com tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && blockSearch && blockSearch.classList.contains('active')) {
             blockSearch.classList.remove('active');
         }
     });
+
 
     {# /* // Close notification and tooltip */ #}
 

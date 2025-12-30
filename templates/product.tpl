@@ -8,7 +8,7 @@
 			</div>
 			<div class="col p-lg-0 product-infos " data-store="product-info-{{ product.id }}">
 				{% include 'snipplets/product/product-form.tpl' %}
-                
+
 				{# Product share #}
 				{# {% include 'snipplets/social/social-share.tpl' %} #}
 			</div>
@@ -23,21 +23,3 @@
 
 {# Related products #}
 {% include 'snipplets/product/product-related.tpl' %}
-
-<script>
-	const collapseButtons = document.querySelectorAll('.collapse-button');
-	const collapseContents = document.querySelectorAll('.collapse-content-shipping');
-	
-	if (collapseButtons.length != 0) {
-		collapseButtons.forEach((button, index) => {
-			button.addEventListener('click', function () {
-				const content = collapseContents[index];
-				if (content.style.display === "none") {
-					content.style.display = "block";
-				} else {
-					content.style.display = "none";
-				}
-			});
-		});
-	}
-</script>

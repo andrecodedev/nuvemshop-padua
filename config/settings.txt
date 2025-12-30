@@ -130,37 +130,6 @@ Encabezado
 			medium = Mediano
 			big = Grande
 	collapse
-		title = Encabezado en celulares
-	dropdown
-		name = logo_position_mobile
-		description = Ubicación del logo
-		values
-			center = Centrado
-			left = Izquierda
-	dropdown
-		name = head_utility
-		description = Mostrar:
-		values
-			searchbox = Buscador grande
-			categories = Barra horizontal de categorías
-			icons = Sólo íconos (menú, buscador y carrito)
-	collapse
-		title = Encabezado en computadoras
-	dropdown
-		name = logo_position_desktop
-		description = Ubicación del logo
-		values
-			left = Izquierda
-			center = Centrado
-	dropdown
-		name = icons_size_desktop
-		description = Tamaño de íconos
-		values
-			big = Grande
-			small = Chico
-	subtitle
-		subtitle = <span class='legend'>Aplica a los iconos de ayuda, cuenta y carrito</span>
-	collapse
 		title = Barra de anuncio
 	checkbox
 		name = ad_bar

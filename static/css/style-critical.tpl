@@ -1,4 +1,5 @@
 {% raw %}@charset "UTF-8":
+@charset "UTF-8";
 
 /*============================================================================
 critical-css.tpl
@@ -110,6 +111,18 @@ body{
 
 {# /* // Placeholders and preloaders */ #}
 
+.force-hamburger .js-header-desktop-nav {
+  display: none !important;
+}
+
+.force-hamburger .js-header-mobile-trigger {
+  display: block !important;
+}
+
+.force-hamburger .js-header-mobile-logo {
+  display: block !important;
+}
+
 .placeholder-line-medium{
   height: 25px;
   border-radius: 6px;
@@ -148,6 +161,16 @@ body{
   -webkit-animation: placeholder-shine 1.5s infinite;
   animation: placeholder-shine 1.5s infinite;
 }
+
+/* Antigravity: Ensure desktop nav items do not shrink so overflow is detected reliably */
+.js-header-desktop-nav > * {
+  flex-shrink: 0;
+}
+.js-header-desktop-nav {
+  overflow: hidden; /* Hide the overflow until JS kicks in to avoid ugly flash */
+}
+/* End Antigravity */
+
 @keyframes placeholder-shine {
   0%{
     opacity: 0.1;
@@ -733,7 +756,7 @@ p{
 
 .badge {
   position: absolute;
-  right: 0;
+  right: -4px !important;
   top: 10px;
   padding: 6px;
   font-size: 12px;
@@ -743,7 +766,7 @@ p{
 }
 
 .badge-amount {
-  padding: 2px 5px;
+  padding: 2px 0;
 }
 
 .badge-overlap {
@@ -1024,7 +1047,9 @@ p{
   top: 100%;
   left: 0;
   z-index: 9999;
+  max-height: 70vh;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .nav-categories {
@@ -1066,11 +1091,6 @@ p{
   vertical-align: middle;
   max-width: 90%;
   max-height: 50px;
-  {% endraw %}
-    {% if (settings.logo_position_mobile == 'center' and settings.head_utility == 'icons') %}
-      {# Padding added to keep logo centered when nav has 1 icon on left and 2 icons on right #}
-    {% endif %}
-  {% raw %}
 }
 
 .logo-img-small,
@@ -1094,18 +1114,21 @@ p{
   border: 0;
 }
 
+.utilities-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+}
+
 .utilities-item {
   position: relative;
   display: inline-block;
-  {% endraw %}
-    {% if settings.head_utility == 'icons' %}
-      font-size: 12px;
-      padding:  15px 8px;
-    {% else %}
-      padding:  15px 10px;
-    {% endif %}
-  {% raw %}
+  font-size: 12px;
+  padding: 15px 8px;
 }
+
 .utility-name {
   padding-top: 5px;
   font-size: 12px;
@@ -1462,7 +1485,7 @@ p{
   height: 45px;
 }
 .shipping-calculator-head.with-form {
-  height: 110px;
+  height: 55px;
 }
 .shipping-calculator-head.with-form + .shipping-spinner-container {
   margin-top: -20px;
@@ -1580,7 +1603,7 @@ p{
       {% if settings.icons_size_desktop == 'small' %}
         top: 0;
         right: initial;
-        left: 17px;
+        left: 25px;
       {% else %}
         right: 15px;
       {% endif %}
@@ -1600,9 +1623,6 @@ p{
         max-height: 80px;
       {% endif %}
       max-width: 80%;
-      {% if (settings.logo_position_mobile == 'center' and settings.head_utility == 'icons') %}
-        padding-left: 0;
-      {% endif %}
       {% if settings.logo_position_desktop == 'center' or (settings.logo_position_desktop == 'left' and settings.icons_size_desktop == 'small') %}
         margin: 20px 0;
       {% endif %}
@@ -1642,11 +1662,16 @@ p{
   {# /* Cart widget and search */ #}
 
   .utilities-container {
-    margin-right: -10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0;
+    margin-right: 0;
   }
   .utilities-item {
-    width: 32%;
-    padding: 15px 0;
+    width: auto;
+    padding: 15px 8px;
   }
 
   {# /* //// Product grid */ #}

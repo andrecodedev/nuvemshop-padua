@@ -19,8 +19,7 @@
     {% if show_topbar %}
         <section class="js-topbar section-topbar {% if not has_ad_bar %}d-none d-md-block{% endif %}">
             <div class="container-fluid">
-                {# CORREÇÃO 1: Adicionado no-gutters para evitar scroll horizontal na barra superior #}
-                <div class="row no-gutters align-items-center">
+                <div class="row">
                     <div class="col text-left d-none d-md-block">
                         {# {% include "snipplets/social/social-links.tpl" %} #}
                     </div>
@@ -34,36 +33,30 @@
             </div>
         </section>
     {% endif %}
-	<div class="header-content container-fluid {% if settings.head_utility == 'searchbox' %}pb-3 pb-md-0{% endif %}">
+	<div class="header-content container-fluid">
+		<div class="{% if not settings.head_fix %}js-nav-logo-bar{% endif %} row no-gutters align-items-center justify-content-between flex-nowrap">
 
-        {# CORREÇÃO 2: Mantido no-gutters e justify-content-between #}
-		<div class="{% if not settings.head_fix %}js-nav-logo-bar{% endif %} row no-gutters align-items-center justify-content-between">
+            {# Menu icon for mobile #}
+            <div class="col-auto d-block d-lg-none js-header-mobile-trigger">
+                <a href="#" class="js-modal-open utilities-link utilities-item" data-toggle="#nav-hamburger" aria-label="{{ 'Menú' | translate }}" data-component="menu-button">
+                    <svg class="icon-inline icon-2x icon-w-14"><use xlink:href="#bars"/></svg>
+                </a>
+                {% if store.country == 'AR'%}
+                    {# Notification icon for quick login on AR stores #}
+                    <div class="js-quick-login-badge badge badge-overlap swing" style="display: none;"></div>
+                {% endif %}
+            </div>
 
-            {# Menu icon for all mobile combinations except when categories are exposed and logo is centered #}
-            {% if settings.head_utility == 'searchbox' or settings.head_utility == 'icons' or (settings.logo_position_mobile == 'left' and settings.head_utility == 'categories') %}
-                <div class="col-auto {% if settings.logo_position_mobile == 'left' %}order-last ml-2{% else %}text-left{% endif %} d-block d-md-none">
-                    <a href="#" class="js-modal-open utilities-link utilities-item" data-toggle="#nav-hamburger" aria-label="{{ 'Menú' | translate }}" data-component="menu-button">
-                        <svg class="icon-inline icon-2x icon-w-14"><use xlink:href="#bars"/></svg>
-                    </a>
-                    {% if store.country == 'AR'%}
-                        {# Notification icon for quick login on AR stores #}
-                        <div class="js-quick-login-badge badge badge-overlap swing" style="display: none;"></div>
-                    {% endif %}
-                </div>
-            {% endif %}
-
-            {# Search icon ued for mobile when categories are exposed #}
-            {% if settings.head_utility == 'categories' or (settings.head_utility == 'categories' and settings.logo_position_mobile == 'left') or settings.head_utility == 'icons' %}
-                <div class="col-2 d-flex justify-content-center {% if settings.logo_position_mobile == 'left' or (settings.logo_position_mobile == 'center' and settings.head_utility == 'icons') %}{% if not (settings.logo_position_mobile == 'center' and settings.head_utility == 'icons') %}ml-2{% endif %}{% else %}text-left{% endif %}">
-                    <button class="js-modal-open-search utilities-link utilities-item" aria-label="{{ 'Buscador' | translate }}">
-                        <svg class="icon-inline icon-2x"><use xlink:href="#search"/></svg>
-                    </button>
-                </div>
-            {% endif %}
+            {# Search icon for mobile and desktop #}
+            <div class="col-auto d-block">
+                <button class="js-modal-open-search utilities-link utilities-item" aria-label="{{ 'Buscador' | translate }}">
+                    <svg class="icon-inline icon-2x"><use xlink:href="#search"/></svg>
+                </button>
+            </div>
 
             {# Logo for mobile and desktop #}
 
-            <div class="nav-desktop col-8 d-none d-md-flex order-md-2 align-items-center justify-content-center">
+            <div class="nav-desktop col d-none d-lg-flex order-lg-2 align-items-center justify-content-center js-header-desktop-nav">
                 <ul class="js-nav-desktop-list nav-desktop-list" data-store="navigation" data-component="menu">
                     {% include 'snipplets/navigation/navigation-nav-list.tpl' with {'desktop_nav': true, 'navigation': navigation[:(navigation | length) / 2]} %}
                 </ul>
@@ -79,73 +72,68 @@
                 </ul>
             </div>
 
-			<div class="d-block d-md-none {% if settings.logo_position_desktop == 'center' %}{% if settings.icons_size_desktop == 'big' %}col-md-6 col-lg-6{% else %}col-md-4 col-lg-4{% endif %}{% else %}col-md-3 col-lg-3{% endif %} {% if settings.logo_position_mobile == 'left' %}col text-left{% else %}col text-center{% endif %} {% if settings.logo_position_desktop == 'center' %}text-md-center {% if settings.icons_size_desktop == 'small' %}offset-md-1{% endif %} order-md-2{% else %}text-md-left{% endif %}">
+			<div class="d-block d-lg-none js-header-mobile-logo {% if settings.logo_position_mobile == 'left' %}col text-left{% else %}col text-center{% endif %}">
                 {% set logo_size_class = settings.logo_size == 'small' ? 'logo-img-small' : settings.logo_size == 'big' ? 'logo-img-big' %}
                 {{ component('logos/logo', {logo_img_classes: 'transition-soft ' ~ logo_size_class, logo_text_classes: 'h5 h3-md mb-0'}) }}
             </div>
 
-            {# Desktop Search, used on mobile when setting is set to show "big search"
+            {# Utility icons: Help, Account and Cart #}
 
-            <div class="{% if settings.head_utility == 'searchbox' %}col-12 order-last order-md-0{% else %}col-6 d-none d-md-block{% endif %} text-center {% if settings.logo_position_desktop == 'center' %}col-md-3 col-lg-3 order-md-1{% elseif settings.icons_size_desktop == 'small' and settings.logo_position_desktop == 'left' %}col-md-6 col-lg-5{% else %}col-md-6 col-lg-6{% endif %}">
-                {% snipplet "header/header-search.tpl" %}
-            </div>
-            #}
-
-            {# Utility icons: Help, Account and Cart (also used on mobile) #}
-
-			<div class="col-2 order-md-3 text-right">
+			<div class="col-auto order-lg-3">
                 {% snipplet "header/header-utilities.tpl" %}
                 {% if settings.head_fix and settings.ajax_cart %}
-                    <div class="d-none d-md-block">
+                    <div class="d-none d-lg-block">
                         {% include "snipplets/notification.tpl" with {add_to_cart: true} %}
                     </div>
                 {% endif %}
             </div>
-            {% if settings.logo_position_mobile == 'left' and not settings.head_utility == 'searchbox' %}
-                <div class="col-auto d-md-none order-last">
-                    <a href="#" class="js-modal-open utilities-link utilities-item" data-toggle="#nav-hamburger" aria-label="{{ 'Menú' | translate }}" data-component="menu-button">
-                        <svg class="icon-inline icon-2x icon-w-14"><use xlink:href="#bars"/></svg>
-                    </a>
-                </div>
-            {% endif %}
 		</div>
         {% if settings.head_fix and settings.ajax_cart %}
-            <div class="d-md-none">
+            <div class="d-lg-none">
                 {% include "snipplets/notification.tpl" with {add_to_cart: true, add_to_cart_mobile: true} %}
             </div>
         {% endif %}
-
-        {# Mobile row for exposed categories #}
-        {# CORREÇÃO 3: Adicionado no-gutters aqui também #}
-        <div class="row align-items-center nav-row no-gutters">
-            {% if settings.head_utility == 'categories' %}
-
-                {# Menu icon inline with categories when when categories are exposed and logo is centered #}
-                {% if settings.logo_position_mobile == 'center' %}
-                    <div class="col-2 d-block d-md-none p-0 text-center">
-                        <a href="#" class="js-modal-open utilities-link utilities-item" data-toggle="#nav-hamburger" aria-label="{{ 'Menú' | translate }}" data-component="menu-button">
-                            <svg class="icon-inline icon-2x icon-w-14"><use xlink:href="#bars"/></svg>
-                        </a>
-                        {% if store.country == 'AR'%}
-                            {# Notification icon for quick login on AR stores#}
-                            <div class="js-quick-login-badge badge badge-overlap swing" style="display: none;"></div>
-                        {% endif %}
-                    </div>
-                {% endif %}
-                <div class="col-{% if settings.logo_position_mobile == 'left' %}12{% else %}10{% endif %} nav-categories-container d-block d-md-none p-0">
-                    {% snipplet "navigation/navigation-categories.tpl" %}
-                </div>
-            {% endif %}
-
-            {# <div class="col text-center p-0 d-none d-md-block">{% snipplet "navigation/navigation.tpl" %}</div> #}
-        </div>
-
 	</div>
     {% include "snipplets/notification.tpl" with {order_notification: true} %}
 
+    {# Search Modal #}
     {% snipplet "header/header-search.tpl" %}
 
 </header>
+<script>
+    (function() {
+        function checkHeaderOverflow() {
+            var desktopNav = document.querySelector('.js-header-desktop-nav');
+            var mobileTrigger = document.querySelector('.js-header-mobile-trigger');
+
+            if (!desktopNav) return;
+
+            // Reset to check natural width
+            document.body.classList.remove('force-hamburger');
+
+            // If strictly hidden by CSS (media query), do nothing
+            if (window.getComputedStyle(desktopNav).display === 'none') {
+                 return;
+            }
+
+            // Check if scrollWidth > clientWidth (content overflows container)
+            // or if the content is wrapping (height increases) - but here flex-wrap might be nowrap
+
+            // More robust: Check if nav items fit in the available width
+            // For col-8, if content is larger, it might shrink or overflow.
+
+            // Simple heuristic: If scrollWidth > clientWidth, it's definitely overflowing.
+            if (desktopNav.scrollWidth > desktopNav.clientWidth + 2) {
+                 document.body.classList.add('force-hamburger');
+            }
+        }
+
+        window.addEventListener('load', checkHeaderOverflow);
+        window.addEventListener('resize', checkHeaderOverflow);
+        // Also run on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', checkHeaderOverflow);
+    })();
+</script>
 
 {# Show cookie validation message #}
 

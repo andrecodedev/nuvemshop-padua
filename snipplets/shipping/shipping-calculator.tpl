@@ -114,7 +114,7 @@
 						<div class="point"></div>
 					</div>
 				</div>
-				<div class="js-shipping-calculator-response mb-3 float-left w-100 transition-soft {% if product_detail %}list {% else %} radio-buttons-group{% endif %}" style="display: none;"></div>
+				<div class="js-shipping-calculator-response float-left w-100 transition-soft {% if product_detail %}list {% else %} radio-buttons-group{% endif %}" style="display: none;"></div>
 			</div>
 			{% if product_detail %}
 			</div>
