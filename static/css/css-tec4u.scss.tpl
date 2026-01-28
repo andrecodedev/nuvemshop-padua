@@ -731,7 +731,11 @@ header {
                 font-weight: 500;
                 line-height: normal;
                 text-transform: uppercase;
-                margin: 12px 0 15px 0;
+                margin: 15px 0 15px 0;
+            }
+
+            @media (max-width: 768px) {
+                margin: 25px 0 15px 0;
             }
 
             .description {

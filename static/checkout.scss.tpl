@@ -85,7 +85,7 @@ $xl: 1200px;
 
 
 .headbar-logo-img {
-  filter: invert(1);
+  filter: invert(0);
 }
 
 body {

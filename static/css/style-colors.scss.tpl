@@ -358,6 +358,9 @@ body{
 
 .breadcrumbs {
   @extend %element-margin-half;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   .divider{
     margin: 3px;
     opacity: 0.6;

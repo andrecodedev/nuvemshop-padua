@@ -1047,16 +1047,15 @@ $(document).ready(function(){
 
         	{# /* // Infinite scroll */ #}
 
-            {% if pages.current == 1 and not pages.is_last %}
+            if ($('.js-load-more').length > 0) {
                 LS.hybridScroll({
                     productGridSelector: '.js-product-table',
-                    spinnerSelector: '#js-infinite-scroll-spinner',
                     loadMoreButtonSelector: '.js-load-more',
                     hideWhileScrollingSelector: ".js-hide-footer-while-scrolling",
-                    productsBeforeLoadMoreButton: 50,
+                    productsBeforeLoadMoreButton: 0,
                     productsPerPage: 12
                 });
-            {% endif %}
+            }
         });
 
 	{% endif %}

@@ -64,6 +64,7 @@
 			</div>
 		</section>
 
+		<div class="js-category-controls-prev"></div>
 		<section class="js-category-controls category-controls container visible-when-content-ready">
 			<div class="row align-items-center my-md-2" style="padding-top: 8px;">
 				<div class="col-12">
@@ -105,7 +106,7 @@
 							</div>
 						</div>
 
-						<div class="col-4 align-self-center" style='padding-bottom: 6px; padding-right: 0px;'>
+						<div class="col-12 col-md-4 align-self-center" style='padding-bottom: 6px;'>
 							{% include "snipplets/breadcrumbs.tpl" %}
 						</div>
 
@@ -149,45 +150,56 @@
 							<div class="js-product-table row" data-block-grid>
 								{% include 'snipplets/product_grid.tpl' with { 'has_banner': true } %}
 							</div>
-								<!-- código para paginação -->
-								<div class='pagination'>
-									{% if pages.previous %}
-										<a class='icon-pagination' href="{{ pages.previous }}">
-											<svg width="31" height="31" viewbox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<rect x="0.5" y="0.571289" width="30" height="30" rx="15" fill="white"/>
-												<path d="M11.5469 15.6494C11.3828 15.4854 11.3828 15.1846 11.5469 15.0205L16.7969 9.77051C16.9609 9.60645 17.2617 9.60645 17.4258 9.77051C17.5898 9.93457 17.5898 10.2354 17.4258 10.3994L12.4766 15.3213L17.4258 20.2705C17.5898 20.4346 17.5898 20.7354 17.4258 20.8994C17.2617 21.0635 16.9609 21.0635 16.7969 20.8994L11.5469 15.6494Z" fill="black" fill-opacity="0.6"/>
-											</svg>
-										</a>
-									{% endif %}
-
-									{% if pages.next or pages.previous %}
-									<p>página</p>
-									{% endif %}
-
-									{% for page in pages.numbers %}
-										{% if page.selected %}
-											<strong>{{ page.number }}</strong>
-											<p>de</p>
-										{% endif %}
-									{% endfor %}
-
-									{% for page in pages.numbers %}
-										{% if loop.last %}
-											<a href="{{ page.url }}">
-												<strong>{{ page.number }}<strong>
+								{# código para paginação #}
+								<div class="js-pagination-container">
+									{% if pages.current == 1 and not pages.is_last %}
+										<div class="text-center mt-5 mb-5">
+											<a class="js-load-more btn btn-primary">
+												{{ 'Mostrar más produtos' | t }}
 											</a>
-										{% endif %}
-									{% endfor %}
+										</div>
 
-									{% if pages.next %}
-									<a class='icon-pagination' href="{{ pages.next }}">
-										<svg width="31" height="31" viewbox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<rect width="30" height="30" rx="15" transform="matrix(-1 0 0 1 30.5 0.571289)" fill="white"/>
-											<path d="M19.4531 15.6494C19.6172 15.4854 19.6172 15.1846 19.4531 15.0205L14.2031 9.77051C14.0391 9.60645 13.7383 9.60645 13.5742 9.77051C13.4102 9.93457 13.4102 10.2354 13.5742 10.3994L18.5234 15.3213L13.5742 20.2705C13.4102 20.4346 13.4102 20.7354 13.5742 20.8994C13.7383 21.0635 14.0391 21.0635 14.2031 20.8994L19.4531 15.6494Z" fill="black" fill-opacity="0.6"/>
-										</svg>
-									</a>
-								{% endif %}
-						</div>
+									{% elseif pages.is_last == false %}
+										<div class='pagination'>
+											{% if pages.previous %}
+												<a class='icon-pagination' href="{{ pages.previous }}">
+													<svg width="31" height="31" viewbox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<rect x="0.5" y="0.571289" width="30" height="30" rx="15" fill="white"/>
+														<path d="M11.5469 15.6494C11.3828 15.4854 11.3828 15.1846 11.5469 15.0205L16.7969 9.77051C16.9609 9.60645 17.2617 9.60645 17.4258 9.77051C17.5898 9.93457 17.5898 10.2354 17.4258 10.3994L12.4766 15.3213L17.4258 20.2705C17.5898 20.4346 17.5898 20.7354 17.4258 20.8994C17.2617 21.0635 16.9609 21.0635 16.7969 20.8994L11.5469 15.6494Z" fill="black" fill-opacity="0.6"/>
+													</svg>
+												</a>
+											{% endif %}
+
+											{% if pages.next or pages.previous %}
+											<p>página</p>
+											{% endif %}
+
+											{% for page in pages.numbers %}
+												{% if page.selected %}
+													<strong>{{ page.number }}</strong>
+													<p>de</p>
+												{% endif %}
+											{% endfor %}
+
+											{% for page in pages.numbers %}
+												{% if loop.last %}
+													<a href="{{ page.url }}">
+														<strong>{{ page.number }}<strong>
+													</a>
+												{% endif %}
+											{% endfor %}
+
+											{% if pages.next %}
+											<a class='icon-pagination' href="{{ pages.next }}">
+												<svg width="31" height="31" viewbox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<rect width="30" height="30" rx="15" transform="matrix(-1 0 0 1 30.5 0.571289)" fill="white"/>
+													<path d="M19.4531 15.6494C19.6172 15.4854 19.6172 15.1846 19.4531 15.0205L14.2031 9.77051C14.0391 9.60645 13.7383 9.60645 13.5742 9.77051C13.4102 9.93457 13.4102 10.2354 13.5742 10.3994L18.5234 15.3213L13.5742 20.2705C13.4102 20.4346 13.4102 20.7354 13.5742 20.8994C13.7383 21.0635 14.0391 21.0635 14.2031 20.8994L19.4531 15.6494Z" fill="black" fill-opacity="0.6"/>
+												</svg>
+											</a>
+											{% endif %}
+										</div>
+									{% endif %}
+								</div>
 						{% else %}
 							<h6 class="text-center mt-5" data-component="filter.message">
 								{{(has_filters_enabled ? "No tenemos resultados para tu búsqueda. Por favor, intentá con otros filtros." : "Próximamente") | translate}}

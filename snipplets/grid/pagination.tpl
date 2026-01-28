@@ -3,13 +3,7 @@
 		<div class="js-load-more text-center my-4">
 			<a class="btn btn-primary">
 				{{ 'Mostrar más productos' | t }}
-				<span class="js-load-more-spinner ml-2" style="display:none;">
-					<svg class="icon-inline icon-spin"><use xlink:href="#spinner-third"/></svg>
-				</span>
 			</a>
-		</div>
-		<div id="js-infinite-scroll-spinner" class="my-4 text-center w-100" style="display:none">
-			<svg class="icon-inline icon-30px svg-icon-text icon-spin"><use xlink:href="#spinner-third"/></svg>
 		</div>
 	{% endif %}
 {% else %}

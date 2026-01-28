@@ -48,7 +48,7 @@
             </div>
 
             {# Search icon for mobile and desktop #}
-            <div class="col-auto d-block">
+            <div class="col-auto col-lg-2 d-block text-left">
                 <button class="js-modal-open-search utilities-link utilities-item" aria-label="{{ 'Buscador' | translate }}">
                     <svg class="icon-inline icon-2x"><use xlink:href="#search"/></svg>
                 </button>
@@ -56,20 +56,22 @@
 
             {# Logo for mobile and desktop #}
 
-            <div class="nav-desktop col d-none d-lg-flex order-lg-2 align-items-center justify-content-center js-header-desktop-nav">
-                <ul class="js-nav-desktop-list nav-desktop-list" data-store="navigation" data-component="menu">
-                    {% include 'snipplets/navigation/navigation-nav-list.tpl' with {'desktop_nav': true, 'navigation': navigation[:(navigation | length) / 2]} %}
-                </ul>
+            <div class="nav-desktop col-lg-8 d-none d-lg-flex order-lg-2 align-items-center justify-content-center js-header-desktop-nav">
+                <div style="display: inline-grid; grid-template-columns: minmax(min-content, 1fr) auto minmax(min-content, 1fr); align-items: center; gap: 20px; width: fit-content; margin: 0 auto;">
+                    <ul class="js-nav-desktop-list nav-desktop-list px-0 text-right" data-store="navigation" data-component="menu">
+                        {% include 'snipplets/navigation/navigation-nav-list.tpl' with {'desktop_nav': true, 'navigation': navigation[:(navigation | length) / 2]} %}
+                    </ul>
 
-                <div class="">
-                    {% set logo_size_class = settings.logo_size == 'small' ? 'logo-img-small' : settings.logo_size == 'big' ? 'logo-img-big' %}
-                    {{ component('logos/logo', {logo_img_classes: 'transition-soft ' ~ logo_size_class, logo_text_classes: 'h5 h3-md mb-0'}) }}
+                    <div class="px-3">
+                        {% set logo_size_class = settings.logo_size == 'small' ? 'logo-img-small' : settings.logo_size == 'big' ? 'logo-img-big' %}
+                        {{ component('logos/logo', {logo_img_classes: 'transition-soft ' ~ logo_size_class, logo_text_classes: 'h5 h3-md mb-0'}) }}
+                    </div>
+
+
+                    <ul class="js-nav-desktop-list nav-desktop-list px-0 text-left" data-store="navigation" data-component="menu">
+                        {% include 'snipplets/navigation/navigation-nav-list.tpl' with {'desktop_nav': true, 'navigation': navigation[(navigation | length) / 2:]} %}
+                    </ul>
                 </div>
-
-
-                <ul class="js-nav-desktop-list nav-desktop-list" data-store="navigation" data-component="menu">
-                    {% include 'snipplets/navigation/navigation-nav-list.tpl' with {'desktop_nav': true, 'navigation': navigation[(navigation | length) / 2:]} %}
-                </ul>
             </div>
 
 			<div class="d-block d-lg-none js-header-mobile-logo {% if settings.logo_position_mobile == 'left' %}col text-left{% else %}col text-center{% endif %}">
@@ -79,7 +81,7 @@
 
             {# Utility icons: Help, Account and Cart #}
 
-			<div class="col-auto order-lg-3">
+			<div class="col-auto col-lg-2 order-lg-3 text-right">
                 {% snipplet "header/header-utilities.tpl" %}
                 {% if settings.head_fix and settings.ajax_cart %}
                     <div class="d-none d-lg-block">
